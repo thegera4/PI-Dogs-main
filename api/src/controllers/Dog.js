@@ -52,6 +52,7 @@ const getAllDogs =  async (req, res) => {
 
 const postDog = async (req, res) => {
   const { name, weight, height, lifespan, image, temperament } = req.body;
+  if(!name || !weight || !height) return res.status(400).send('Faltan datos!');
   const CREATED_DOG = await Dog.create({
     name,
     weight,
@@ -63,7 +64,7 @@ const postDog = async (req, res) => {
     where: { name: temperament + " " }
   });
   CREATED_DOG.addTemperament(temperamentDb);
-  res.send('Perrito creado!');
+  res.status(201).send('Perrito creado!');
 }
 
 const getDogById = async (req, res) => {
