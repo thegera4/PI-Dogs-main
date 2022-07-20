@@ -14,8 +14,8 @@ function Card({ name, temperament, weight, image }) {
         </div>
         <div className="right-bottom-container">
           <div className="titles">
-            <p>Temperamento: </p>
-            <p>Peso: </p>
+            <p>Temperament: </p>
+            <p>Weight (Kgs): </p>
           </div>
           <div className="values">
             <p>{temperament}</p>
