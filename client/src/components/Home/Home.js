@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Bark from '../../assets/sounds/bark_intro.mp3'
+import Card from '../Card/Card'
 
 function Home() {
   const BARK = new Audio(Bark);
   
   
   useEffect(() => {
-    BARK.play();
-    BARK.loop = false;
+    //BARK.play();
+    //BARK.loop = false;
   })
 
   return (
-    <div>Aqui va el Home</div>
+    <div>
+      <Card name="" image="" temperament="" weight=""/>
+    </div>
   )
 }
 
