@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Bark from '../../assets/sounds/bark_intro.mp3'
 import Card from '../Card/Card'
+import Pagination from '../Paginate/Paginate'
+import SearchBar from '../SearchBar/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllDogs } from '../../actions'
 import { Link } from 'react-router-dom'
+import DogPic from '../../assets/images/dog_profile.jpg'
 
 function Home() {
   const BARK = new Audio(Bark);
@@ -33,21 +36,35 @@ function Home() {
     DISPATCH(getAllDogs())
   }, [DISPATCH])
 
-  return (
+  return(
     <div>
       <h1>WELCOME TO BEFOS</h1>
-    {
-      RENDERED_DOGS.map((dog, index) => {
-        return(
-          <Card
-            key={dog.id} 
-            name={dog.name} 
-            image={dog.image.url} 
-            temperament={dog.temperament.split(', ')[0]} 
-            weight={dog.weight.metric}/>
-        )
-    })
-    }
+      <Pagination 
+        dogsPerPage={dogsPerPage} 
+        allDogs={DOGS.length} 
+        paginate={Paginate} />
+      <SearchBar />
+      {
+        RENDERED_DOGS.map(dog => {
+          return(
+            <Card
+              key={dog.id} 
+              name={dog.name} 
+              image={
+                dog.image?
+                dog.image.url:
+                DogPic} 
+              temperament={
+                dog.temperament?
+                dog.temperament.split(', ')[0]:
+                'No record'} 
+              weight={
+                dog.weight.metric?
+                dog.weight.metric:
+                'No record'}/>
+          )
+        })
+      }
     </div>
   )
 }

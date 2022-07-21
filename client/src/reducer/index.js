@@ -1,5 +1,6 @@
 import { 
   GET_ALL_DOGS,
+  GET_DOG_BY_NAME
  } from "../actions";
 
 const initialState = {
@@ -16,6 +17,11 @@ function rootReducer(state=initialState, action){
         ...state,
         dogs: action.payload,
         allDogs: action.payload
+      }
+    case GET_DOG_BY_NAME:
+      return {
+        ...state,
+        dogs: action.payload
       }
     default:
       return state

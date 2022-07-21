@@ -1,0 +1,9 @@
+.pagination{
+    list-style: none;
+    display: flex;
+}
+.page-link{
+    border: none;
+    background: transparent;
+    color: #000;
+}
