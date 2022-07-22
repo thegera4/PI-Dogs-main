@@ -19,12 +19,10 @@ export class SearchBar extends Component {
   handleSubmit(e){
     e.preventDefault();
     this.props.searchDogs(this.state.search);
-    
   }
 
   render() {
     const { search } = this.state;
-    console.info(search)
     return (
       <div>
         <input 
@@ -51,7 +49,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    searchDogs: () => dispatch(searchDogs()),
+    searchDogs: (name) => dispatch(searchDogs(name)),
   }
 };
 
