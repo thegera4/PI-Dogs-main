@@ -1,31 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;500;700&display=swap');
 .LandingPage{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
-  background-image: url("../../assets/images/landingBG.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
-.title{
-  font-size: 4rem;
-  font-weight: bold;
-  color: #fff;
+.left{
+  display: flex;
+  width: 50%;
+}
+.left > img{
+  margin: auto;
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #1E1E1E;
+  align-items: center;
+  justify-content: center;
+}
+.right > img{
+  border-radius: 9999px;
+  height: 300px;
+  width: 300px;
+}
+.right > h1{
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
   text-align: center;
-  margin-top: 30%;
+}
+.right > p{
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 1rem;
+  text-align: center;
 }
 .bone{
-  position: relative;
-  top: 60%;
-  left: 49%;
+  margin-top: 4rem;
+}
+@media screen and (max-width:768px) {
+  .left{
+    display: none;
+  }
+  .right{
+    width: 100%;
+  }
+}
+@media screen and (max-height:851px) {
+    .right > p{
+      display: none;
+    }
+    .bone{
+      top: -50px;
+    }
 }
 
-/*@media screen and (max-width:820px) {
-  .title{
-    font-size: 3rem;
-  }
-  .bone{
-    top: 50%;
-    left: 49%;
-  }
-}*/
+

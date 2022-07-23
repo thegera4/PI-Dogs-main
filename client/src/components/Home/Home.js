@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 //import Bark from '../../assets/sounds/bark_intro.mp3'
 import Card from '../Card/Card'
 import Pagination from '../Paginate/Paginate'
+import NavBar from '../NavBar/NavBar'
 import SearchBar from '../SearchBar/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
@@ -57,7 +58,11 @@ function Home() {
 
   return(
     <div>
+      <NavBar />
       <h1>WELCOME TO BEFOS</h1>
+      <div className="searchbar-container">
+        <SearchBar />
+      </div>
       <div className="pagination">
         <Pagination 
           dogsPerPage={dogsPerPage} 
@@ -65,9 +70,6 @@ function Home() {
           paginate={Paginate} />
       </div>
       <br/>
-      <div className="search-bar">
-        <SearchBar />
-      </div>
       <br/>
       {/* Filtro por orden ascendente / descendente */}
       <div className="AZZA-Filter">

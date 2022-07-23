@@ -9,11 +9,11 @@ a{
   cursor: pointer;
   background: transparent;
   border: none;
-  transform: scale(3);
+  transform: scale(2.5);
   transition: all 0.3s ease-in-out;
 }
 .bone:hover{
-  transform: scale(3.5);
+  transform: scale(2.8);
 }
 .c1, .c2, .c3, .c4{
   background:#fff;
@@ -57,5 +57,19 @@ a{
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   text-align: center;
+}
+@media screen and (max-width:375px) {
+  .bone{
+    transform: scale(1.5);
+  }
+}
+@media screen and (max-height:512px) {
+  .right > img {
+    height: 200px;
+    width: 200px;
+  }
+  .bone{
+    transform: scale(1.5);
+  }
 }
 

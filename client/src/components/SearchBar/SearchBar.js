@@ -27,14 +27,14 @@ export class SearchBar extends Component {
       <div>
         <input 
           type="text" 
-          placeholder="Busca el nombre de raza de un perrito..." 
+          placeholder="Search for a dog breed..." 
           value={search} 
           onChange={(e) => this.handleInputChange(e)} 
         />
         <button 
           type= 'submit'
           onClick={(e) => this.handleSubmit(e)}>
-            Buscar
+            Search
         </button>
       </div>
     )

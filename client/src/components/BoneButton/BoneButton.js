@@ -12,7 +12,7 @@ function BoneButton() {
         <Link to="/home"><div className="c4"></div></Link>
         <Link to="/home"><div className="b1">
             <div className="b2">
-                Entrar
+                Go!
             </div>
         </div></Link>
       </button>
