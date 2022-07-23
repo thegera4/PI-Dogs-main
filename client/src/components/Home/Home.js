@@ -8,7 +8,8 @@ import {
   getAllDogs,
   getTemperaments, 
   orderByName, 
-  orderByTemperament } from '../../actions'
+  orderByTemperament,
+  filterDogsByCreated } from '../../actions'
 import { Link } from 'react-router-dom'
 import DogPic from '../../assets/images/dog_profile.jpg'
 
@@ -21,6 +22,7 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [dogsPerPage] = useState(8);
+  const [, setOrder] = useState('');
 
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
@@ -28,7 +30,6 @@ function Home() {
 
   const Paginate = (pageNumber) => { setCurrentPage(pageNumber)}
 
-  
   useEffect(() => {
     //BARK.play();
     //BARK.loop = false;
@@ -38,9 +39,9 @@ function Home() {
   
   const handleOrderByName = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     DISPATCH(orderByName(e.target.value));
     setCurrentPage(1);
+    setOrder(`Order: ${e.target.value}`);
   }
 
   function handleFilterByTemperament(e){
@@ -49,26 +50,33 @@ function Home() {
     setCurrentPage(1);
   }
 
+   function handleFilterByCreated(e){
+    DISPATCH(filterDogsByCreated(e.target.value));
+    setCurrentPage(1);
+  }
+
   return(
     <div>
       <h1>WELCOME TO BEFOS</h1>
-      <Pagination 
-        dogsPerPage={dogsPerPage} 
-        allDogs={DOGS.length} 
-        paginate={Paginate} />
-      <br/>  
-      <SearchBar />
+      <div className="pagination">
+        <Pagination 
+          dogsPerPage={dogsPerPage} 
+          allDogs={DOGS.length} 
+          paginate={Paginate} />
+      </div>
+      <br/>
+      <div className="search-bar">
+        <SearchBar />
+      </div>
       <br/>
       {/* Filtro por orden ascendente / descendente */}
       <div className="AZZA-Filter">
         <select onChange={e => {handleOrderByName(e)}}>
-          <option value="order">Order by breed name...</option>
           <option value='az'>A-Z</option>
           <option value='za'>Z-A</option>
         </select>
       </div>
       <br/>
-      {/* Filtro por temperamento */}
       <div className="Temperaments-Filter">
         <select onChange={e => {handleFilterByTemperament(e)}}>
           <option value="All">All temperaments...</option>
@@ -84,7 +92,14 @@ function Home() {
         </select>
       </div>
       <br/>
-      {/* Otro filtro */}
+      <div className="Created-Filter">
+        <select onChange={e => handleFilterByCreated(e)}>
+          <option value='All'>All dogs</option>
+          <option value='created'>Created in database</option>
+          <option value='api'>Existent (from API)</option>
+        </select>
+      </div>
+      <br/>
       {
         RENDERED_DOGS.map(dog => {
           return(

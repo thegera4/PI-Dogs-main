@@ -3,7 +3,10 @@ import {
   GET_DOG_BY_NAME,
   ORDER_BY_NAME,
   GET_TEMPERAMENTS,
-  ORDER_BY_TEMPERAMENT
+  ORDER_BY_TEMPERAMENT,
+  FILTER_BY_CREATED,
+  GET_DOG_BY_ID,
+  CLEAR_DETAILS
  } from "../actions";
 
 const initialState = {
@@ -47,6 +50,25 @@ function rootReducer(state=initialState, action){
       return {
         ...state,
         dogs: filteredByTemperament
+      }
+    case FILTER_BY_CREATED:
+      const allDogs2 = state.allDogs;
+      let filteredByCreated = action.payload === 'created' ?
+        allDogs2.filter(dog => dog.createdInDb) :
+        allDogs2.filter(dog => !dog.createdInDb)
+      return {
+        ...state,
+        dogs: action.payload === 'All' ? state.allDogs : filteredByCreated
+      }
+    case GET_DOG_BY_ID:
+      return {
+        ...state,
+        dogDetail: action.payload
+      }
+    case CLEAR_DETAILS:
+      return {
+        ...state,
+        dogDetail: {}
       }
     default:
       return state

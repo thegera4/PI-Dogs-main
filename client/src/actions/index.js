@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
-export const GET_DOG_DETAILS = "GET_DOG_DETAILS";
-export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
-export const GET_DOG_BY_ID = "GET_DOG_BY_ID";
 export const GET_DOG_BY_NAME = "GET_DOG_BY_NAME";
+export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const ORDER_BY_TEMPERAMENT = "ORDER_BY_TEMPERAMENT";
+export const GET_DOG_BY_ID = "GET_DOG_BY_ID";
+export const CLEAR_DETAILS = "GET_DOG_DETAILS";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -38,6 +39,13 @@ export function searchDogs(name){
     }
 }
 
+export function filterDogsByCreated(payload){
+    return {
+        type: FILTER_BY_CREATED,
+        payload
+    }
+}
+
 export function orderByName(payload){
     return {
         type: ORDER_BY_NAME,
@@ -63,5 +71,25 @@ export function orderByTemperament(temperament){
     return {
         type: ORDER_BY_TEMPERAMENT,
         payload: temperament
+    }
+}
+
+export function getDogById(id){
+    return function(dispatch){
+        fetch(`http://localhost:3001/dogs/${id}`)
+        .then(res => res.json())
+        .then(details => {
+        return dispatch({
+            type: GET_DOG_BY_ID,
+            payload: details
+        })
+        })
+        .catch(error => console.error(error));
+    }
+}
+
+export function clearDogDetail(){
+    return {
+        type: CLEAR_DETAILS
     }
 }
