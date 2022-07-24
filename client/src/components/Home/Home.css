@@ -1,0 +1,53 @@
+.Header{
+  display: flex;
+  flex-direction: row;
+  height: 30vh;
+  background-color: rgb(87, 74, 74, 0.6);
+}
+
+.left-header{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 7rem;
+}
+.left-header h1{
+  color: #fff;
+  padding: 1rem;
+  font-size: 3rem;
+}
+.left-header p{
+  color: #fff;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+.right-header{
+  display: flex;
+  width: 50%;
+}
+.right-header img{
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  align-items: center;
+  justify-content: center;
+  margin:0 auto;
+}
+.Pagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.Filters-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.Cards-Container{
+  display: grid;
+  margin-left: 6rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+  margin-top: 5rem;
+}
