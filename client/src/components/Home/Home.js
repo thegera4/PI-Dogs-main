@@ -64,9 +64,9 @@ function Home() {
       <div className="Header">
         <div className="left-header">
           <h1>WELCOME TO BEFOS!</h1>
-          <p> Befos is a website that allows you to find your perfect dog based on the breed information</p>
+          <p> Befos is a website that allows you to find your perfect dog based on the breed information.</p>
           <p> To start you can click on the search icon and then write the name of a dog breed or use<br/> 
-          the filters or pagination(page numbers) below to search in our database</p>
+          the filters or pagination(page numbers) below to search in our database.</p>
           <div className="searchbar-container">
             <SearchBar />
           </div>
@@ -84,15 +84,20 @@ function Home() {
       <br/>
       <br/>
       <div className="Filters-container">
+        <button className="btn-refresh">
+          Refresh
+        </button>
         <div className="AZZA-Filter">
+          <label>Filter by name: </label>
           <select onChange={e => {handleOrderByName(e)}}>
             <option value='az'>A-Z</option>
             <option value='za'>Z-A</option>
           </select>
         </div>
         <div className="Temperaments-Filter">
+        <label>Filter by temperament: </label>
           <select onChange={e => {handleFilterByTemperament(e)}}>
-            <option value="All">All temperaments...</option>
+            <option value="All">All temperaments</option>
             {TEMPERAMENTS.map(temperament => {
               return(
                 <option 
@@ -105,6 +110,7 @@ function Home() {
           </select>
         </div>
         <div className="Created-Filter">
+        <label>Filter by created: </label>
           <select onChange={e => handleFilterByCreated(e)}>
             <option value='All'>All dogs</option>
             <option value='created'>Created in database</option>

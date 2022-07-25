@@ -1,15 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;500;700&display=swap');
 .Header{
   display: flex;
   flex-direction: row;
-  height: 30vh;
+  height: 45vh;
   background-color: rgb(87, 74, 74, 0.6);
 }
-
 .left-header{
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-left: 7rem;
+  margin-top: 5rem;
 }
 .left-header h1{
   color: #fff;
@@ -24,10 +25,11 @@
 .right-header{
   display: flex;
   width: 50%;
+  margin-top: 3rem;
 }
 .right-header img{
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 9999px;
   align-items: center;
   justify-content: center;
@@ -38,11 +40,79 @@
   justify-content: center;
   margin-top: 1rem;
 }
+.btn-refresh{
+  height: 60px;
+  width: 100px;
+  border-radius: 20px;
+  border: none;
+  background: #1E1E1E;
+  color: #fff;
+  font-size: 20px;
+}
 .Filters-container{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
+select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: rgb(87, 74, 74, 0.5);
+   flex: 1;
+   padding: 0.5em;
+   color:#fff;
+   cursor:pointer;
+   font-size: 1.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+}
+select::-ms-expand {
+   display: none;
+}
+.AZZA-Filter{
+  min-width: 230px;
+}
+.Temperaments-Filter{
+  min-width: 450px;
+}
+.Created-Filter,
+.AZZA-Filter,
+.Temperaments-Filter {
+   position: relative;
+   display: flex;
+   line-height: 3;
+   background: rgb(87, 74, 74, 0.5);
+   overflow: hidden;
+   border-radius: .25em;
+}
+option{
+  font-size: 1rem;
+}
+.Created-Filter::after,
+.AZZA-Filter::after,
+.Temperaments-Filter::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: rgb(87, 74, 74, 0.5);
+  cursor:pointer;
+  pointer-events:none;
+  transition:.3s all ease;
+}
+.Created-Filter:hover::after{
+  color: #1E1E1E;
+}
+label{
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .Cards-Container{
   display: grid;
