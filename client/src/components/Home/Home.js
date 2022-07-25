@@ -4,6 +4,7 @@ import Card from '../Card/Card'
 import Pagination from '../Paginate/Paginate'
 import NavBar from '../NavBar/NavBar'
 import SearchBar from '../SearchBar/SearchBar'
+import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
   getAllDogs,
@@ -30,6 +31,8 @@ function Home() {
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
+
+  const PREV_NEXT= Math.ceil(DOGS.length/dogsPerPage);
 
   const Paginate = (pageNumber) => { setCurrentPage(pageNumber)}
 
@@ -58,6 +61,14 @@ function Home() {
     setCurrentPage(1);
   }
 
+  function goToPrevPage(){
+    setCurrentPage(currentPage - 1);
+  }
+
+  function goToNextPage(){
+    setCurrentPage(currentPage + 1);
+  }
+
   return(
     <div>
       <NavBar />
@@ -75,11 +86,29 @@ function Home() {
           <img src={Bella} alt="Bella" />
         </div>
       </div>
+      {/*tratar con loader aqui*/}
+      {!DOGS ? (
+        <div className="loader-container">
+          <Loader />
+        </div>
+        ) : (
+        <>
       <div className="Pagination">
+        <button 
+          onClick={() => goToPrevPage()}
+          className={`prev ${currentPage === 1 ? 'disabled' : ''}`}>
+          &#60;
+        </button>
         <Pagination 
           dogsPerPage={dogsPerPage} 
           allDogs={DOGS.length} 
-          paginate={Paginate} />
+          paginate={Paginate}
+          currentPage={currentPage} />
+        <button 
+          onClick={() => goToNextPage()}
+          className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}>
+          &#62;
+        </button>
       </div>
       <br/>
       <br/>
@@ -143,6 +172,9 @@ function Home() {
           })
         }
       </div>
+      </>
+      )
+      }
     </div>
   )
 }

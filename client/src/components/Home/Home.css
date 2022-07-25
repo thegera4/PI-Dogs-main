@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;500;700&display=swap');
+body{
+  overflow:hidden;
+}
 .Header{
   display: flex;
   flex-direction: row;
@@ -40,6 +43,9 @@
   justify-content: center;
   margin-top: 1rem;
 }
+.Pagination button{
+  cursor: pointer;
+}
 .btn-refresh{
   height: 60px;
   width: 100px;
@@ -73,6 +79,21 @@ select {
 }
 select::-ms-expand {
    display: none;
+}
+.prev,
+.next {
+  border: none;
+  color: #1E1E1E;
+  cursor: pointer;
+}
+.page-link.active {
+  border: none;
+  border-radius: 9999px;
+  background-color: rgb(87, 74, 74, 0.6);
+}
+.prev.disabled,
+.next.disabled {
+  display: none;
 }
 .AZZA-Filter{
   min-width: 230px;
@@ -119,5 +140,10 @@ label{
   margin-left: 6rem;
   grid-template-columns: repeat(4, 1fr);
   gap: 4rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+.loader-container{
+  position: relative;
+  top: 20px;
+  left: 450px;
 }

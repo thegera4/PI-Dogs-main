@@ -1,3 +1,6 @@
+nav{
+    margin-left: -40px;
+}
 .pagination{
     list-style: none;
     display: flex;
@@ -5,5 +8,5 @@
 .page-link{
     border: none;
     background: transparent;
-    color: #000;
+    color: #1E1E1E;
 }
