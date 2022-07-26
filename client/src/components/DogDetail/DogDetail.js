@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { getDogById, clearDogDetail } from '../../actions';
-//import { Link } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 import './DogDetail.css';
+import DogPawIcon from '../../assets/icons/dog-paw-icon.png';
+import WeightIcon from '../../assets/icons/weight_icon.png';
+import HeightIcon from '../../assets/icons/height_icon.png';
 export class DogDetail extends Component {
   constructor(props) {
     super(props);
@@ -28,32 +31,44 @@ export class DogDetail extends Component {
 
   render() {
     return (
-      <div>
+      <>
+      <NavBar />
+      <div className="General-container">
         <img src={this.props.dogDetail[0]?.image.url} alt={this.props.dogDetail[0]?.name} />
         <div className="name-container">
           <h1>{this.props.dogDetail[0]?.name}</h1>
-          <button onClick={this.toggleDetails}>
-            <span>More Details! ↓  ↑</span>
+          <h3>Lifespan: {this.props.dogDetail[0]?.lifespan}</h3>
+        </div>
+          <button className="more-details" onClick={this.toggleDetails}>
+            <span>More Details!</span>
           </button>
-      </div>
         { this.state.toggle ?
           (
           <div className="details">
             <div className="details-container">
+              <div className="icon">
+                <img src={DogPawIcon} alt="dog_paw_icon" />
+              </div>
               <div className="content">
                   <h3>Temperaments:</h3>
                   <span>{this.props.dogDetail[0]?.temperament}</span>
               </div>
             </div>
             <div className="details-container">
+              <div className="icon">
+                <img src={WeightIcon} alt="weight_icon" />
+              </div>
               <div className="content">
-                  <h3>Weight:</h3>
+                  <h3>Weight (metric):</h3>
                   <span>{this.props.dogDetail[0]?.weight.metric}</span>
               </div>
             </div>
             <div className="details-container">
+              <div className="icon">
+                <img src={HeightIcon} alt="height_icon" />
+              </div>
               <div className="content">
-                  <h3>Height:</h3>
+                  <h3>Height (metric):</h3>
                   <span>{this.props.dogDetail[0]?.height.metric}</span>
               </div>
             </div>
@@ -61,6 +76,7 @@ export class DogDetail extends Component {
           ) : null
         }
       </div>
+      </>
       )
   }
 }

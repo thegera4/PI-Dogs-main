@@ -6,7 +6,7 @@ import './NavBar.css'
 export default function NavBar() {
   return (
     <nav className="navbar">
-      <img src={Logo} alt="Befos Logo" />
+        <img src={Logo} alt="Befos Logo" />
       <Link to="/dog">
         <span className="nav-span">
           Create your own breed!
