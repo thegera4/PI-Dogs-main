@@ -6,7 +6,7 @@ body{
   display: flex;
   flex-direction: row;
   height: 45vh;
-  background-color: rgb(87, 74, 74, 0.6);
+  background-color: rgb(87, 74, 74);
 }
 .left-header{
   display: flex;
@@ -89,7 +89,8 @@ select::-ms-expand {
 .page-link.active {
   border: none;
   border-radius: 9999px;
-  background-color: rgb(87, 74, 74, 0.6);
+  background-color: rgb(87, 74, 74);
+  color: #fff;
 }
 .prev.disabled,
 .next.disabled {
@@ -101,13 +102,16 @@ select::-ms-expand {
 .Temperaments-Filter{
   min-width: 450px;
 }
+label{
+  background: rgb(126, 109, 109);
+}
 .Created-Filter,
 .AZZA-Filter,
 .Temperaments-Filter {
    position: relative;
    display: flex;
    line-height: 3;
-   background: rgb(87, 74, 74, 0.5);
+   background: rgb(87, 74, 74);
    overflow: hidden;
    border-radius: .25em;
 }

@@ -6,6 +6,8 @@ import './DogDetail.css';
 import DogPawIcon from '../../assets/icons/dog-paw-icon.png';
 import WeightIcon from '../../assets/icons/weight_icon.png';
 import HeightIcon from '../../assets/icons/height_icon.png';
+import BackIcon from '../../assets/icons/back-home.png';
+import { Link } from "react-router-dom";
 export class DogDetail extends Component {
   constructor(props) {
     super(props);
@@ -13,26 +15,27 @@ export class DogDetail extends Component {
       toggle: false
     }
     this.toggleDetails = this.toggleDetails.bind(this);
-  }
-    
+  } 
   componentDidMount(){
     this.props.getDogById(this.props.match.params.id);
   }
-
   componentWillUnmount(){
     this.props.clearDogDetail();
   }
-
   toggleDetails(){
     this.setState({
       toggle: !this.state.toggle
     })
   }
-
   render() {
     return (
       <>
       <NavBar />
+      <div className="back-container">
+        <Link to="/home">
+        <img src={BackIcon} alt="Go-back-icon"/>
+        </Link>
+      </div>
       <div className="General-container">
         <img src={this.props.dogDetail[0]?.image.url} alt={this.props.dogDetail[0]?.name} />
         <div className="name-container">
@@ -80,22 +83,15 @@ export class DogDetail extends Component {
       )
   }
 }
-
 export const mapStateToProps = (state) => {
   return {
     dogDetail: state.dogDetail,
   }
 };
-
 export const mapDispatchToProps = (dispatch) =>{
   return {
     getDogById: (id) => dispatch(getDogById(id)),
     clearDogDetail: () => dispatch(clearDogDetail()),
   }
 };
-
 export default connect(mapStateToProps,mapDispatchToProps)(DogDetail);
-
-/*
-anos de vida
-*/

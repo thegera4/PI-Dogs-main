@@ -92,86 +92,84 @@ function Home() {
           <Loader />
         </div>
         ) : (
-        <>
-      <div className="Pagination">
-        <button 
-          onClick={() => goToPrevPage()}
-          className={`prev ${currentPage === 1 ? 'disabled' : ''}`}>
-          &#60;
-        </button>
-        <Pagination 
-          dogsPerPage={dogsPerPage} 
-          allDogs={DOGS.length} 
-          paginate={Paginate}
-          currentPage={currentPage} />
-        <button 
-          onClick={() => goToNextPage()}
-          className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}>
-          &#62;
-        </button>
-      </div>
-      <br/>
-      <br/>
-      <div className="Filters-container">
-        <button className="btn-refresh">
-          Refresh
-        </button>
-        <div className="AZZA-Filter">
-          <label>Filter by name: </label>
-          <select onChange={e => {handleOrderByName(e)}}>
-            <option value='az'>A-Z</option>
-            <option value='za'>Z-A</option>
-          </select>
+      <>
+        <div className="Pagination">
+          <button 
+            onClick={() => goToPrevPage()}
+            className={`prev ${currentPage === 1 ? 'disabled' : ''}`}>
+            &#60;
+          </button>
+          <Pagination 
+            dogsPerPage={dogsPerPage} 
+            allDogs={DOGS.length} 
+            paginate={Paginate}
+            currentPage={currentPage} />
+          <button 
+            onClick={() => goToNextPage()}
+            className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}>
+            &#62;
+          </button>
         </div>
-        <div className="Temperaments-Filter">
-        <label>Filter by temperament: </label>
-          <select onChange={e => {handleFilterByTemperament(e)}}>
-            <option value="All">All temperaments</option>
-            {TEMPERAMENTS.map(temperament => {
+        <div className="Filters-container">
+          <button className="btn-refresh">
+            Refresh
+          </button>
+          <div className="AZZA-Filter">
+            <label>Filter by name: </label>
+            <select onChange={e => {handleOrderByName(e)}}>
+              <option value='az'>A-Z</option>
+              <option value='za'>Z-A</option>
+            </select>
+          </div>
+          <div className="Temperaments-Filter">
+          <label>Filter by temperament: </label>
+            <select onChange={e => {handleFilterByTemperament(e)}}>
+              <option value="All">All temperaments</option>
+              {TEMPERAMENTS.map(temperament => {
+                return(
+                  <option 
+                    key={temperament.id} 
+                    value={temperament.name}>
+                    {temperament.name}
+                  </option>
+                ) 
+              })}
+            </select>
+          </div>
+          <div className="Created-Filter">
+          <label>Filter by created: </label>
+            <select onChange={e => handleFilterByCreated(e)}>
+              <option value='All'>All dogs</option>
+              <option value='created'>Created in database</option>
+              <option value='api'>Existent (from API)</option>
+            </select>
+          </div>
+        </div>
+        <div className="Cards-Container">
+          {
+            RENDERED_DOGS.map(dog => {
               return(
-                <option 
-                  key={temperament.id} 
-                  value={temperament.name}>
-                  {temperament.name}
-                </option>
-              ) 
-            })}
-          </select>
+                <Link to={`/dog/${dog.id}`} key={dog.id}>
+                  <Card
+                    key={dog.id} 
+                    name={dog.name} 
+                    image={
+                      dog.image?
+                      dog.image.url:
+                      DogPic} 
+                    temperament={
+                      dog.temperament?
+                      dog.temperament.split(', ')[0]:
+                      'No record'} 
+                    weight={
+                      dog.weight.metric?
+                      dog.weight.metric:
+                      'No record'}/>
+                </Link>
+              )
+            })
+          }
         </div>
-        <div className="Created-Filter">
-        <label>Filter by created: </label>
-          <select onChange={e => handleFilterByCreated(e)}>
-            <option value='All'>All dogs</option>
-            <option value='created'>Created in database</option>
-            <option value='api'>Existent (from API)</option>
-          </select>
-        </div>
-      </div>
-      <div className="Cards-Container">
-        {
-          RENDERED_DOGS.map(dog => {
-            return(
-              <Link to={`/dog/${dog.id}`} key={dog.id}>
-                <Card
-                  key={dog.id} 
-                  name={dog.name} 
-                  image={
-                    dog.image?
-                    dog.image.url:
-                    DogPic} 
-                  temperament={
-                    dog.temperament?
-                    dog.temperament.split(', ')[0]:
-                    'No record'} 
-                  weight={
-                    dog.weight.metric?
-                    dog.weight.metric:
-                    'No record'}/>
-              </Link>
-            )
-          })
-        }
-      </div>
       </>
       )
       }
