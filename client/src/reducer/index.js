@@ -6,7 +6,8 @@ import {
   ORDER_BY_TEMPERAMENT,
   FILTER_BY_CREATED,
   GET_DOG_BY_ID,
-  CLEAR_DETAILS
+  CLEAR_DETAILS,
+  POST_DOG
  } from "../actions";
 
 const initialState = {
@@ -70,6 +71,10 @@ function rootReducer(state=initialState, action){
         ...state,
         dogDetail: {}
       }
+    case POST_DOG:
+      return {
+        ...state
+    }
     default:
       return state
   }

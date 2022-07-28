@@ -8,6 +8,7 @@ export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const ORDER_BY_TEMPERAMENT = "ORDER_BY_TEMPERAMENT";
 export const GET_DOG_BY_ID = "GET_DOG_BY_ID";
 export const CLEAR_DETAILS = "GET_DOG_DETAILS";
+export const POST_DOG = "POST_DOG";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -91,5 +92,20 @@ export function getDogById(id){
 export function clearDogDetail(){
     return {
         type: CLEAR_DETAILS
+    }
+}
+
+export function postDog(payload){
+    return function(){
+        fetch("http://localhost:3001/dogs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(info => info)
+        .catch(error => console.error(error));
     }
 }

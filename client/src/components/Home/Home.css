@@ -84,7 +84,9 @@ select::-ms-expand {
 .next {
   border: none;
   color: #1E1E1E;
-  cursor: pointer;
+  background: transparent;
+  font-size: 1.5rem;
+  z-index: 1;
 }
 .page-link.active {
   border: none;
