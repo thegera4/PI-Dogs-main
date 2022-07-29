@@ -19,21 +19,17 @@ import './Home.css'
 
 function Home() {
   //const BARK = new Audio(Bark);
-
   const DISPATCH = useDispatch()
   const DOGS = useSelector(state => state.dogs)
   const TEMPERAMENTS = useSelector(state => state.temperaments);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [dogsPerPage] = useState(8);
   const [, setOrder] = useState('');
-
+  const [loading, setLoading] = useState(true);
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
-
   const PREV_NEXT= Math.ceil(DOGS.length/dogsPerPage);
-
   const Paginate = (pageNumber) => { setCurrentPage(pageNumber)}
 
   useEffect(() => {
@@ -42,33 +38,31 @@ function Home() {
     DISPATCH(getAllDogs())
     DISPATCH(getTemperaments())
   }, [DISPATCH])
-  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)}, [])
   const handleOrderByName = (e) => {
     e.preventDefault();
     DISPATCH(orderByName(e.target.value));
     setCurrentPage(1);
     setOrder(`Order: ${e.target.value}`);
   }
-
   function handleFilterByTemperament(e){
     e.preventDefault();
     DISPATCH(orderByTemperament(e.target.value));
     setCurrentPage(1);
   }
-
-   function handleFilterByCreated(e){
+  function handleFilterByCreated(e){
     DISPATCH(filterDogsByCreated(e.target.value));
     setCurrentPage(1);
   }
-
   function goToPrevPage(){
     setCurrentPage(currentPage - 1);
   }
-
   function goToNextPage(){
     setCurrentPage(currentPage + 1);
   }
-
   return(
     <div>
       <NavBar />
@@ -86,12 +80,10 @@ function Home() {
           <img src={Bella} alt="Bella" />
         </div>
       </div>
-      {/*tratar con loader aqui*/}
-      {!DOGS ? (
+        { loading? 
         <div className="loader-container">
           <Loader />
-        </div>
-        ) : (
+        </div>: 
       <>
         <div className="Pagination">
           <button 
@@ -147,7 +139,7 @@ function Home() {
         </div>
         <div className="Cards-Container">
           {
-            RENDERED_DOGS.map(dog => {
+            RENDERED_DOGS?.map(dog => {
               return(
                 <Link to={`/dog/${dog.id}`} key={dog.id}>
                   <Card
@@ -171,8 +163,7 @@ function Home() {
           }
         </div>
       </>
-      )
-      }
+       }
     </div>
   )
 }
