@@ -44,7 +44,7 @@ const getAllDogs =  async (req, res) => {
       dog.name.toLowerCase().includes(NAME.toLowerCase()));
     dogName.length ? 
     res.status(200).send(dogName) : 
-    res.status(404).send("No se encontraron perritos con ese nombre!");
+    res.status(404).send({msg: 'Name not found!'});
   } else{
     res.status(200).send(totalDogs);
   }
@@ -52,7 +52,7 @@ const getAllDogs =  async (req, res) => {
 
 const postDog = async (req, res) => {
   const { name, weight, height, lifespan, image, temperament } = req.body;
-  if(!name || !weight || !height) return res.status(400).send('Faltan datos!');
+  if(!name || !weight || !height) return res.status(400).send({msg: 'Missing data!'});
   const CREATED_DOG = await Dog.create({
     name,
     weight,
@@ -64,7 +64,7 @@ const postDog = async (req, res) => {
     where: { name: temperament + " " }
   });
   CREATED_DOG.addTemperament(temperamentDb);
-  res.status(201).send('Perrito creado!');
+  res.status(201).send({msg: 'Your dog was created!'});
 }
 
 const getDogById = async (req, res) => {
@@ -74,7 +74,7 @@ const getDogById = async (req, res) => {
     const DOG_ID = await ALL_DOGS.filter(dog => dog.id == ID);
     DOG_ID.length ? 
     res.status(200).json(DOG_ID) :
-    res.status(404).send('No se encontro el id del perrito!');
+    res.status(404).send({msg: 'Id not found!'});
 }
 }
 
