@@ -41,7 +41,7 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 2000)}, [])
+    }, 1000)}, [])
   const handleOrderByName = (e) => {
     e.preventDefault();
     DISPATCH(orderByName(e.target.value));

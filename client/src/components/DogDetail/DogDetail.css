@@ -115,3 +115,12 @@ body{
   align-items: center;
   justify-content: center;
 }
+.loader{
+  position: relative;
+  top: 450px;
+  left: 20%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+
+}
