@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { getTemperaments, postDog } from '../../actions/index'
 import './CreateDog.css'
-import { selectHeight, selectWeight, selectLifespan } from './utils'
+import { selectHeight, selectWeight, selectLifespan,
+         containsSpecialChars, containsNumbers } from './utils'
 import BackIcon from '../../assets/icons/back-home.png';
 import NavBar from '../NavBar/NavBar';
 
@@ -11,8 +12,10 @@ function CreateDog() {
   const DISPATCH = useDispatch();
   const HISTORY = useHistory();
   const TEMPERAMENTS = useSelector(state => state.temperaments);
-  const AZ_TEMPERAMENTS = TEMPERAMENTS.sort((a, b) => a.name.localeCompare(b.name));
-  const FINAL_TEMPERAMENTS = AZ_TEMPERAMENTS.filter(temp => temp.name.trim() !== 'undefined');
+  const AZ_TEMPERAMENTS = 
+        TEMPERAMENTS.sort((a, b) => a.name.localeCompare(b.name));
+  const FINAL_TEMPERAMENTS = 
+        AZ_TEMPERAMENTS.filter(temp => temp.name.trim() !== 'undefined');
   const [input, setInput] = useState({
     name: '',
     hmin: '0',
@@ -35,8 +38,9 @@ function CreateDog() {
 
   useEffect(() => DISPATCH(getTemperaments()), [DISPATCH]);
   useEffect(() => {
-    if(dogName === '' || dogName === undefined || dogName === null) {
-      setErrors({...errors, dogName: 'You must enter a name for the breed!'})
+    if(dogName === '' || dogName === undefined || dogName === null || 
+       containsSpecialChars(dogName) || containsNumbers(dogName)) {
+      setErrors({...errors, dogName: 'You must enter a valid name for the breed! Only letters are allowed.'})
     } else {
       const newErrors = {...errors};
       delete newErrors.dogName;
@@ -128,11 +132,11 @@ function CreateDog() {
     setInput({...input});
   }
   function handleFocus(){
-    if(dogName === '' || dogName === undefined || dogName === null) {
-      setErrors({...errors, dogName: 'You must enter a name for the breed!'})
+    if(dogName === '' || dogName === undefined || dogName === null || 
+       containsSpecialChars(dogName) || containsNumbers(dogName)) {
+      setErrors({...errors, dogName: 'You must enter a name for the breed! Only letters are allowed.'})
     }
   }
-
   return (
     <>
       <NavBar createDogPage="CDP"/>

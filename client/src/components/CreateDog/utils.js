@@ -19,3 +19,11 @@ export function selectLifespan(){
     }
   return ARR;
 }
+export function containsSpecialChars(str) {
+    const SPECIAL_CHARS = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+    return SPECIAL_CHARS.test(str);
+}
+export function containsNumbers(num) {
+    const NUMBERS = /\d/;
+    return NUMBERS.test(num);
+}
