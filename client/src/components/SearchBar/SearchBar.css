@@ -7,6 +7,9 @@
   transition: all 0.3s ease-in-out;
   margin-top: 1rem;
 }
+.search-icon:hover{
+  transform: scale(1.5);
+}
 .box{
   display: flex;
   flex-direction: row;
