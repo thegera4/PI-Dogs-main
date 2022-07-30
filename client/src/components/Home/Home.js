@@ -32,6 +32,7 @@ function Home() {
   const PREV_NEXT= Math.ceil(DOGS.length/dogsPerPage);
   const Paginate = (pageNumber) => { setCurrentPage(pageNumber)}
 
+  
   useEffect(() => {
     //BARK.play();
     //BARK.loop = false;
@@ -63,6 +64,7 @@ function Home() {
   function goToNextPage(){
     setCurrentPage(currentPage + 1);
   }
+
 
   return(
     <div>
@@ -104,7 +106,7 @@ function Home() {
           </button>
         </div>
         <div className="Filters-container">
-          <button className="btn-refresh">
+          <button className="btn-refresh" onClick={() => window.location.reload()}>
             Refresh
           </button>
           <div className="AZZA-Filter">
@@ -112,6 +114,14 @@ function Home() {
             <select onChange={e => {handleOrderByName(e)}}>
               <option value='az'>A-Z</option>
               <option value='za'>Z-A</option>
+            </select>
+          </div>
+          <div className="Created-Filter">
+          <label>Filter by created: </label>
+            <select onChange={e => {handleFilterByCreated(e)}}>
+              <option value='All'>All dogs</option>
+              <option value='created'>Created in database</option>
+              <option value='api'>Existent (from API)</option>
             </select>
           </div>
           <div className="Temperaments-Filter">
@@ -127,14 +137,6 @@ function Home() {
                   </option>
                 ) 
               })}
-            </select>
-          </div>
-          <div className="Created-Filter">
-          <label>Filter by created: </label>
-            <select onChange={e => handleFilterByCreated(e)}>
-              <option value='All'>All dogs</option>
-              <option value='created'>Created in database</option>
-              <option value='api'>Existent (from API)</option>
             </select>
           </div>
         </div>
