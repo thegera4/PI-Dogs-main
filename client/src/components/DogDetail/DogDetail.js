@@ -7,6 +7,7 @@ import DogPawIcon from '../../assets/icons/dog-paw-icon.png';
 import WeightIcon from '../../assets/icons/weight_icon.png';
 import HeightIcon from '../../assets/icons/height_icon.png';
 import BackIcon from '../../assets/icons/back-home.png';
+import NotFound from '../NotFound/NotFound';
 import { Link } from "react-router-dom";
 import Loader from '../Loader/Loader';
 export class DogDetail extends Component {
@@ -33,6 +34,12 @@ export class DogDetail extends Component {
     })
   }
   render() {
+    const status = this.props.dogDetail.hasOwnProperty('msg');
+    if(status){
+      return (
+        <NotFound errMsg={this.props.dogDetail.msg}/>
+      )
+    }
     return (
       <>
         {this.state.loading ?

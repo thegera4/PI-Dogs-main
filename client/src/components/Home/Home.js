@@ -63,6 +63,7 @@ function Home() {
   function goToNextPage(){
     setCurrentPage(currentPage + 1);
   }
+
   return(
     <div>
       <NavBar />
