@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
 import { searchDogs } from '../../actions'
 import './SearchBar.css'
@@ -10,15 +10,20 @@ export class SearchBar extends Component {
       search: '',
       toggle: false
     }
+  } 
+  wrapperRef = createRef();
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
-  
+  componentWillUnmount(){
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
   handleInputChange(e){
     e.preventDefault();
     this.setState({
       search: e.target.value
     })
   }
-
   handleSubmit(e){
     e.preventDefault();
     this.props.searchDogs(this.state.search);
@@ -27,18 +32,23 @@ export class SearchBar extends Component {
       toggle: false
     })
   }
-
   handleToggle(e){
     e.preventDefault();
     this.setState({
       toggle: !this.state.toggle
     })
   }
-
+  handleClickOutside = (event) => {
+    if (!this.wrapperRef.current?.contains(event.target)) {
+      this.setState({
+        toggle: false
+      })
+    }
+  }
   render() {
     const { search, toggle } = this.state;
     return (
-      <>
+      <div >
       { !toggle ?
         (
           <img 
@@ -48,10 +58,11 @@ export class SearchBar extends Component {
           onClick={(e) => this.handleToggle(e)}/>
         ) :
         (
-          <div className="box">
+          <div ref={this.wrapperRef} className="box">
             <input 
               type="text"  
               value={search} 
+              autoFocus={true} 
               onChange={(e) => this.handleInputChange(e)} 
             />
             <button 
@@ -61,24 +72,19 @@ export class SearchBar extends Component {
             </button>
           </div>
         )
-      
       }
-      </>
-
+      </div>
     )
   }
 }
-
 function mapStateToProps(state){
   return {
     dogs: state.dogs,
   }
 };
-
 function mapDispatchToProps(dispatch){
   return {
     searchDogs: (name) => dispatch(searchDogs(name)),
   }
 };
-
 export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);
