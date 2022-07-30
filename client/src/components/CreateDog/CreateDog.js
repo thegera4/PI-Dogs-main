@@ -139,6 +139,7 @@ function CreateDog() {
       <div className="home-container">
         <Link to="/home">
           <img src={BackIcon} alt="Go-back-icon"/>
+          <p>Go back home</p>
         </Link>
       </div>
       <div className="form">
