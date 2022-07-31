@@ -10,6 +10,7 @@ import BackIcon from '../../assets/icons/back-home.png';
 import NotFound from '../NotFound/NotFound';
 import { Link } from "react-router-dom";
 import Loader from '../Loader/Loader';
+import DogProfile from '../../assets/images/dog_profile.jpg';
 export class DogDetail extends Component {
   constructor(props) {
     super(props);
@@ -34,12 +35,13 @@ export class DogDetail extends Component {
     })
   }
   render() {
-    const status = this.props.dogDetail.hasOwnProperty('msg');
-    if(status){
+    const STATUS = this.props.dogDetail.hasOwnProperty('msg');
+    if(STATUS){
       return (
         <NotFound errMsg={this.props.dogDetail.msg}/>
       )
     }
+    const CREATED_IN_DB = this.props.dogDetail[0]?.hasOwnProperty('createdInDb');
     return (
       <>
         {this.state.loading ?
@@ -56,13 +58,20 @@ export class DogDetail extends Component {
             </Link>
           </div>
           <div className="General-container">
-            <img src={this.props.dogDetail[0]?.image.url} alt={this.props.dogDetail[0]?.name} />
+            <img 
+            src={!CREATED_IN_DB ? 
+            this.props.dogDetail[0]?.image.url : 
+            this.props.dogDetail[0]?.image ? 
+            this.props.dogDetail[0]?.image : DogProfile }
+            alt={this.props.dogDetail[0]?.name} />
             <div className="name-container">
               <h1>{this.props.dogDetail[0]?.name}</h1>
               <h3>Lifespan: {this.props.dogDetail[0]?.lifespan}</h3>
             </div>
               <button className="more-details" onClick={this.toggleDetails}>
-                <span>{!this.state.toggle ? 'More Details!' : 'Less Details!'}</span>
+                <span>
+                  {!this.state.toggle ? 'More Details!' : 'Less Details!'}
+                </span>
               </button>
             { this.state.toggle ?
               (
@@ -73,7 +82,10 @@ export class DogDetail extends Component {
                   </div>
                   <div className="content">
                       <h3>Temperaments:</h3>
-                      <span>{this.props.dogDetail[0]?.temperament}</span>
+                      <span>
+                      {this.props.dogDetail[0]?.temperament?
+                      this.props.dogDetail[0]?.temperament : 'No records found'}
+                      </span>
                   </div>
                 </div>
                 <div className="details-container">
@@ -82,7 +94,11 @@ export class DogDetail extends Component {
                   </div>
                   <div className="content">
                       <h3>Weight (metric):</h3>
-                      <span>{this.props.dogDetail[0]?.weight.metric}</span>
+                      <span>
+                      {!CREATED_IN_DB ? 
+                      this.props.dogDetail[0]?.weight.metric :
+                      this.props.dogDetail[0]?.weight}
+                      </span>
                   </div>
                 </div>
                 <div className="details-container">
@@ -91,7 +107,11 @@ export class DogDetail extends Component {
                   </div>
                   <div className="content">
                       <h3>Height (metric):</h3>
-                      <span>{this.props.dogDetail[0]?.height.metric}</span>
+                      <span>
+                      {!CREATED_IN_DB ?
+                        this.props.dogDetail[0]?.height.metric :
+                        this.props.dogDetail[0]?.height}
+                      </span>
                   </div>
                 </div>
               </div>
