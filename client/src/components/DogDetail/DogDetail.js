@@ -22,7 +22,7 @@ export class DogDetail extends Component {
   componentDidMount(){
     setTimeout(() => {
       this.setState({...this.state,loading: false})
-    }, 1000)
+    }, 2000)
     this.props.getDogById(this.props.match.params.id);
   }
   componentWillUnmount(){
