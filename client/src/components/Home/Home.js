@@ -65,7 +65,6 @@ function Home() {
     setCurrentPage(currentPage + 1);
   }
 
-
   return(
     <div>
       <NavBar />
