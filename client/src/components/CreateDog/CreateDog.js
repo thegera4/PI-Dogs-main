@@ -138,13 +138,13 @@ function CreateDog() {
       setErrors({...errors, dogName: 'You must enter a name for the breed! Only letters are allowed.'})
     }
   }
-function checkIfExists(temperament){
-  if(!tempArr.includes(temperament)){
-    tempArr.push(temperament);
-    return true
+  function checkIfExists(temperament){
+    if(!tempArr.includes(temperament) && tempArr.length < 10){
+      tempArr.push(temperament);
+      return true
+    }
+    return false
   }
-  return false
-}
   console.log(tempArr)
   return (
     <>
@@ -232,20 +232,17 @@ function checkIfExists(temperament){
           </select>
         </div>
         <div className="container-temperaments-selected">
-        {
-          input.temperaments.map((temperament, index) => {
-            checkIfExists(temperament)
-          return(
-            !tempArr.includes(temperament) ? (
-              null
-            ) : (
+
+          {input.temperaments.map((temperament) => 
+          checkIfExists(temperament))}
+          {tempArr.map((temperament, index) =>
               <button key ={index} className="selected-temperament"
                 onClick={() => handleDelete(temperament)}>
                   <span className="text">{temperament}</span>
                   <span>Delete</span>
               </button>
-            )
-          )})}
+          )}
+  
           </div>
         <div className="input-container ic2">
           <input className="input" 
