@@ -96,7 +96,7 @@ export class DogDetail extends Component {
                       <h3>Weight (metric):</h3>
                       <span>
                       {!CREATED_IN_DB ? 
-                      this.props.dogDetail[0]?.weight.metric :
+                      this.props.dogDetail[0]?.weight :
                       this.props.dogDetail[0]?.weight}
                       </span>
                   </div>
@@ -109,7 +109,7 @@ export class DogDetail extends Component {
                       <h3>Height (metric):</h3>
                       <span>
                       {!CREATED_IN_DB ?
-                        this.props.dogDetail[0]?.height.metric :
+                        this.props.dogDetail[0]?.height :
                         this.props.dogDetail[0]?.height}
                       </span>
                   </div>

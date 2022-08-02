@@ -1,14 +1,6 @@
-import { 
-  GET_ALL_DOGS,
-  GET_DOG_BY_NAME,
-  ORDER_BY_NAME,
-  GET_TEMPERAMENTS,
-  ORDER_BY_TEMPERAMENT,
-  FILTER_BY_CREATED,
-  GET_DOG_BY_ID,
-  CLEAR_DETAILS,
-  POST_DOG
- } from "../actions";
+import { GET_ALL_DOGS, GET_DOG_BY_NAME, ORDER_BY_NAME, GET_TEMPERAMENTS,
+  ORDER_BY_TEMPERAMENT, FILTER_BY_CREATED, GET_DOG_BY_ID, CLEAR_DETAILS,
+  POST_DOG, ORDER_BY_WEIGHT } from "../actions";
 
 const initialState = {
     dogs:[],
@@ -45,8 +37,7 @@ function rootReducer(state=initialState, action){
       }
     case ORDER_BY_TEMPERAMENT:
       const allDogs = state.allDogs;
-      const filteredByTemperament = action.payload === 'All' ?
-        allDogs :
+      const filteredByTemperament = action.payload === 'All' ? allDogs :
         allDogs.filter(dog => dog.temperament?.includes(action.payload.trim()));
       return {
         ...state,
@@ -75,6 +66,14 @@ function rootReducer(state=initialState, action){
       return {
         ...state
     }
+    case ORDER_BY_WEIGHT:
+      const orderByWeight = action.payload === 'asc' ? 
+        state.dogs.sort((a,b) => Number(a.weight.split(' - ')[0]) - Number(b.weight.split(' - ')[0])):
+        state.dogs.sort((a,b) => Number(b.weight.split(' - ')[0])- Number(a.weight.split(' - ')[0]));
+      return {
+        ...state,
+        dogs: orderByWeight
+      }
     default:
       return state
   }

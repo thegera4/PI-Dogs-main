@@ -9,6 +9,7 @@ export const ORDER_BY_TEMPERAMENT = "ORDER_BY_TEMPERAMENT";
 export const GET_DOG_BY_ID = "GET_DOG_BY_ID";
 export const CLEAR_DETAILS = "GET_DOG_DETAILS";
 export const POST_DOG = "POST_DOG";
+export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -107,5 +108,12 @@ export function postDog(payload){
         .then(res => res.json())
         .then(info => info)
         .catch(error => console.error(error));
+    }
+}
+
+export function orderByWeight(payload){
+    return {
+        type: ORDER_BY_WEIGHT,
+        payload
     }
 }

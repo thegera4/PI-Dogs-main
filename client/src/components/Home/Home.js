@@ -7,7 +7,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllDogs, getTemperaments, orderByName, 
-  orderByTemperament, filterDogsByCreated } from '../../actions'
+orderByTemperament, filterDogsByCreated, orderByWeight } from '../../actions'
 import { Link } from 'react-router-dom'
 import DogPic from '../../assets/images/dog_profile.jpg'
 import Bella from '../../assets/images/bella_home.png'
@@ -27,7 +27,7 @@ function Home() {
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
   const [maxPageLimit, setMaxPageLimit] = useState(5);
   const [minPageLimit, setMinPageLimit] = useState(0);
-  const pageNumberLimit = 5;
+  const PAGE_NUMBER_LIMIT = 5;
 
   useEffect(() => {
     //BARK.play();
@@ -38,11 +38,11 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 1000)}, [])
+    }, 1500)}, [])
   const handleOrderByName = (e) => {
     e.preventDefault();
     DISPATCH(orderByName(e.target.value));
-    setCurrentPage(1);
+    
     setOrder(`Order: ${e.target.value}`);
   }
   function handleFilterByTemperament(e){
@@ -52,24 +52,28 @@ function Home() {
   }
   function handleFilterByCreated(e){
     DISPATCH(filterDogsByCreated(e.target.value));
-    setCurrentPage(1);
+  }
+  function handleFilterByWeight(e){
+    e.preventDefault();
+    DISPATCH(orderByWeight(e.target.value));
+    setOrder(`Weight: ${e.target.value}`);
   }
   const onPageChange= (pageNumber)=>{
     setCurrentPage(pageNumber);
   }
   const onPrevClick = ()=>{
-    if((currentPage-1) % pageNumberLimit === 0){
-      setMaxPageLimit(maxPageLimit - pageNumberLimit);
-      setMinPageLimit(minPageLimit - pageNumberLimit);
+    if((currentPage-1) % PAGE_NUMBER_LIMIT === 0){
+      setMaxPageLimit(maxPageLimit - PAGE_NUMBER_LIMIT);
+      setMinPageLimit(minPageLimit - PAGE_NUMBER_LIMIT);
     }
     setCurrentPage(prev=> prev-1);
   }
   const onNextClick = ()=>{
-       if(currentPage+1 > maxPageLimit){
-           setMaxPageLimit(maxPageLimit + pageNumberLimit);
-           setMinPageLimit(minPageLimit + pageNumberLimit);
-       }
-       setCurrentPage(prev=>prev+1);
+    if(currentPage+1 > maxPageLimit){
+      setMaxPageLimit(maxPageLimit + PAGE_NUMBER_LIMIT);
+      setMinPageLimit(minPageLimit + PAGE_NUMBER_LIMIT);
+    }
+    setCurrentPage(prev=>prev+1);
   }
 
   return(
@@ -106,39 +110,49 @@ function Home() {
             onPageChange={onPageChange} />
           </div>
           <div className="Filters-container">
-          <button className="btn-refresh" onClick={() => window.location.reload()}>
-            Refresh
-          </button>
-          <div className="AZZA-Filter">
-            <label>Filter by name: </label>
-            <select onChange={e => {handleOrderByName(e)}}>
-              <option value='az'>A-Z</option>
-              <option value='za'>Z-A</option>
-            </select>
-          </div>
-          <div className="Created-Filter">
-          <label>Filter by created: </label>
-            <select onChange={e => {handleFilterByCreated(e)}}>
-              <option value='All'>All dogs</option>
-              <option value='created'>Created in database</option>
-              <option value='api'>Existent (from API)</option>
-            </select>
-          </div>
-          <div className="Temperaments-Filter">
-          <label>Filter by temperament: </label>
-            <select onChange={e => {handleFilterByTemperament(e)}}>
-              <option value="All">All temperaments</option>
-              {TEMPERAMENTS.map(temperament => {
-                return(
-                  <option 
-                    key={temperament.id} 
-                    value={temperament.name}>
-                    {temperament.name}
-                  </option>
-                ) 
-              })}
-            </select>
-          </div>
+            <button 
+              className="btn-refresh" onClick={() => window.location.reload()}>
+                Refresh
+            </button>
+            <div className="AZZA-Filter">
+              <label>Filter by name: </label>
+              <select onChange={e => {handleOrderByName(e)}}>
+                <option value="">Select</option>
+                <option value='az'>A-Z</option>
+                <option value='za'>Z-A</option>
+              </select>
+            </div>
+            <div className="Created-Filter">
+            <label>Filter by created: </label>
+              <select onChange={e => {handleFilterByCreated(e)}}>
+                <option value='All'>All dogs</option>
+                <option value='created'>Created in database</option>
+                <option value='api'>Existent (from API)</option>
+              </select>
+            </div>
+            <div className="Temperaments-Filter">
+            <label>Filter by temperament: </label>
+              <select onChange={e => {handleFilterByTemperament(e)}}>
+                <option value="All">All temperaments</option>
+                {TEMPERAMENTS.map(temperament => {
+                  return(
+                    <option 
+                      key={temperament.id} 
+                      value={temperament.name}>
+                      {temperament.name}
+                    </option>
+                  ) 
+                })}
+              </select>
+            </div>
+            <div className="Weight-Filter">
+              <label>Filter by weight: </label>
+              <select onChange={e => {handleFilterByWeight(e)}}>
+                <option value="" disabled selected hidden>Select...</option>
+                <option value='asc'>Light</option>
+                <option value='desc'>Heavy</option>
+              </select>
+            </div>
           </div>
           <div className="Cards-Container">
           {
@@ -157,8 +171,8 @@ function Home() {
                       dog.temperament.split(', ')[0]:
                       'No record'} 
                     weight={
-                      dog.weight.metric?
-                      dog.weight.metric:
+                      dog.weight?
+                      dog.weight:
                       'No record'}/>
                 </Link>
               )

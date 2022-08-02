@@ -5,8 +5,8 @@ const getApiInfo = async () =>{
   const URL = await axios.get('https://api.thedogapi.com/v1/breeds');
   const INFO = await URL.data.map(dog =>{
     return{
-      weight:dog.weight,
-      height:dog.height,
+      weight:dog.weight.metric.includes('NaN') ? dog.weight.metric.replace('NaN','0') : dog.weight.metric,
+      height:dog.height.metric,
       id:dog.id,
       name: dog.name,
       lifespan: dog.life_span,
