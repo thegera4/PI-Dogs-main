@@ -6,10 +6,49 @@ nav{
     list-style: none;
     display: flex;
 }
+.pagination li{
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
 .page-link{
     border: none;
     background: transparent;
     color: #1E1E1E;
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
+}
+.prev,
+.next {
+  border: none;
+  color: #1E1E1E;
+  background: transparent;
+  font-size: 1.5rem;
+  z-index: 1;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+.prev{
+  position: relative;
+  right: 2rem;
+}
+.prev.disabled,
+.next.disabled {
+  display: none;
+}
+li{
+  width: 25px;
+  text-align: center;
+}
+.active{
+  border: none;
+  border-radius: 9999px;
+  background-color: rgb(87, 74, 74);
+  color: #fff;
+}
+.dots{
+  cursor: default;
+}
+.numbers{
+  cursor: pointer;
 }

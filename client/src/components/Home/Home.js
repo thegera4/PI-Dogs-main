@@ -6,12 +6,8 @@ import NavBar from '../NavBar/NavBar'
 import SearchBar from '../SearchBar/SearchBar'
 import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
-import { 
-  getAllDogs,
-  getTemperaments, 
-  orderByName, 
-  orderByTemperament,
-  filterDogsByCreated } from '../../actions'
+import { getAllDogs, getTemperaments, orderByName, 
+  orderByTemperament, filterDogsByCreated } from '../../actions'
 import { Link } from 'react-router-dom'
 import DogPic from '../../assets/images/dog_profile.jpg'
 import Bella from '../../assets/images/bella_home.png'
@@ -29,10 +25,10 @@ function Home() {
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
-  const PREV_NEXT= Math.ceil(DOGS.length/dogsPerPage);
-  const Paginate = (pageNumber) => { setCurrentPage(pageNumber)}
+  const [maxPageLimit, setMaxPageLimit] = useState(5);
+  const [minPageLimit, setMinPageLimit] = useState(0);
+  const pageNumberLimit = 5;
 
-  
   useEffect(() => {
     //BARK.play();
     //BARK.loop = false;
@@ -58,11 +54,22 @@ function Home() {
     DISPATCH(filterDogsByCreated(e.target.value));
     setCurrentPage(1);
   }
-  function goToPrevPage(){
-    setCurrentPage(currentPage - 1);
+  const onPageChange= (pageNumber)=>{
+    setCurrentPage(pageNumber);
   }
-  function goToNextPage(){
-    setCurrentPage(currentPage + 1);
+  const onPrevClick = ()=>{
+    if((currentPage-1) % pageNumberLimit === 0){
+      setMaxPageLimit(maxPageLimit - pageNumberLimit);
+      setMinPageLimit(minPageLimit - pageNumberLimit);
+    }
+    setCurrentPage(prev=> prev-1);
+  }
+  const onNextClick = ()=>{
+       if(currentPage+1 > maxPageLimit){
+           setMaxPageLimit(maxPageLimit + pageNumberLimit);
+           setMinPageLimit(minPageLimit + pageNumberLimit);
+       }
+       setCurrentPage(prev=>prev+1);
   }
 
   return(
@@ -82,29 +89,23 @@ function Home() {
           <img src={Bella} alt="Bella" />
         </div>
       </div>
-        { loading? 
-        <div className="loader-container">
+      { loading? 
+      <div className="loader-container">
           <Loader />
-        </div>: 
-      <>
-        <div className="Pagination">
-          <button 
-            onClick={() => goToPrevPage()}
-            className={`prev ${currentPage === 1 ? 'disabled' : ''}`}>
-            &#60;
-          </button>
+      </div>: 
+        <>
+          <div className="Pagination">
           <Pagination 
             dogsPerPage={dogsPerPage} 
             allDogs={DOGS.length} 
-            paginate={Paginate}
-            currentPage={currentPage} />
-          <button 
-            onClick={() => goToNextPage()}
-            className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}>
-            &#62;
-          </button>
-        </div>
-        <div className="Filters-container">
+            currentPage={currentPage}
+            minPageLimit = {minPageLimit}
+            maxPageLimit = {maxPageLimit}
+            onPrevClick={onPrevClick} 
+            onNextClick={onNextClick}
+            onPageChange={onPageChange} />
+          </div>
+          <div className="Filters-container">
           <button className="btn-refresh" onClick={() => window.location.reload()}>
             Refresh
           </button>
@@ -138,8 +139,8 @@ function Home() {
               })}
             </select>
           </div>
-        </div>
-        <div className="Cards-Container">
+          </div>
+          <div className="Cards-Container">
           {
             RENDERED_DOGS?.map(dog => {
               return(
@@ -163,9 +164,9 @@ function Home() {
               )
             })
           }
-        </div>
-      </>
-       }
+          </div>
+        </>
+      }
     </div>
   )
 }

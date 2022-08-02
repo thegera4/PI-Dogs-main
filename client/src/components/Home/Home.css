@@ -89,24 +89,6 @@ select {
 select::-ms-expand {
    display: none;
 }
-.prev,
-.next {
-  border: none;
-  color: #1E1E1E;
-  background: transparent;
-  font-size: 1.5rem;
-  z-index: 1;
-}
-.page-link.active {
-  border: none;
-  border-radius: 9999px;
-  background-color: rgb(87, 74, 74);
-  color: #fff;
-}
-.prev.disabled,
-.next.disabled {
-  display: none;
-}
 .AZZA-Filter{
   min-width: 230px;
 }

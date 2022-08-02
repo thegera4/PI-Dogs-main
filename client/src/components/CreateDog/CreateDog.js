@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { getTemperaments, postDog } from '../../actions/index'
 import './CreateDog.css'
 import { selectHeight, selectWeight, selectLifespan,
-         containsSpecialChars, containsNumbers, checkIfExists } from './utils'
+         containsSpecialChars, containsNumbers } from './utils'
 import BackIcon from '../../assets/icons/back-home.png';
 import NavBar from '../NavBar/NavBar';
 

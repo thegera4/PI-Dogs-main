@@ -1,66 +1,66 @@
 import React from 'react'
 import './Paginate.css'
 
-function Paginate({dogsPerPage, allDogs, paginate, currentPage}) {
-  const pageNumbers = [];
-  const maxPageLimit = 5;
-  const minPageLimit = 0;
-
+const Paginate = (props) => {
+  const { currentPage, maxPageLimit, minPageLimit, allDogs,dogsPerPage} = props;
+  const pages = [];
+  let pageIncrementEllipses = null;
+  let pageDecremenEllipses = null;
+  const PREV_NEXT= Math.ceil(allDogs/dogsPerPage);
+    
   for(let i = 1; i <= Math.ceil(allDogs/dogsPerPage); i++) {
-    pageNumbers.push(i);
+    pages.push(i);
   }
 
-  const arrays = Math.ceil(pageNumbers.length / 5)
- 
-
-
-  /*const getPaginationGroup = () => {
-    let start = Math.floor((currentPage - 1) / maxPageLimit) * maxPageLimit;
-    return new Array(maxPageLimit).fill().map((_, idx) => start + idx + 1);
-  };*/
-
-  console.log(arrays)
-  return(
+  const handlePrevClick = ()=>{
+    props.onPrevClick();
+  }
+  const handleNextClick = ()=>{
+    props.onNextClick();
+  }
+  const handlePageClick = (e)=>{
+    props.onPageChange(Number(e.target.id));
+  }
+  const pageNumbers = pages.map(page => {
+    if(page <= maxPageLimit  && page > minPageLimit) {
+      return(
+        <li key={page} id={page} onClick={handlePageClick} 
+            className={`${currentPage===page ? 'active' : null} numbers`}>
+            {page}
+        </li>
+      );
+    }else{
+      return null;
+    }
+  });
+  if(pages.length > maxPageLimit){
+    pageIncrementEllipses = <li className='dots'>&hellip;</li>
+  }
+  if(minPageLimit >=1){
+    pageDecremenEllipses = <li className='dots'>&hellip;</li> 
+  }
+  return (
     <nav>
-      <ul className="pagination">
-        {pageNumbers?.map(number => {
-          return(
-            <li key={number} className="page-item">
-              <button 
-                onClick={() => paginate(number)} 
-                className={`page-link ${currentPage === number ? 'active' : null}`}>
-                  {number}
-              </button>
-            </li>
-          )
-        })}
-        {/*
-          pageNumbers.map(number => {
-            if(number <= maxPageLimit && number > minPageLimit){
-              return(
-                <li key={number} className="page-item">
-                  <button 
-                    onClick={() => paginate(number)} 
-                    className={`page-link ${currentPage === number ? 'active' : null}`}>
-                      {number}
-                  </button>
-                </li>
-              )
-            } else{
-              return null;
-            }
-        }
-        )*/}
-        {/*getPaginationGroup().map((number) => (
-        <li key={number} className="page-item">
-          <button
-            key={number}
-            onClick={() => paginate(number)}
-            className={`page-link ${currentPage === number ? 'active' : null}`}>
-            <span>{number}</span>
+      <ul className="pagination"> 
+        <li className="page-item">
+          <button 
+            className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+            onClick={handlePrevClick} 
+            disabled={currentPage === pages[0]}>
+              Prev
           </button>
         </li>
-      ))*/}
+        {pageDecremenEllipses}
+        {pageNumbers}
+        {pageIncrementEllipses}
+        <li className="page-item">
+          <button 
+            className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}
+            onClick={handleNextClick} 
+            disabled={currentPage === pages[pages.length-1]}>
+              Next
+          </button>
+        </li>
       </ul>
     </nav>
   )
