@@ -25,9 +25,6 @@ function Home() {
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
-  const [maxPageLimit, setMaxPageLimit] = useState(5);
-  const [minPageLimit, setMinPageLimit] = useState(0);
-  const PAGE_NUMBER_LIMIT = 5;
 
   useEffect(() => {
     //BARK.play();
@@ -39,6 +36,10 @@ function Home() {
     setTimeout(() => {
       setLoading(false)
     }, 1500)}, [])
+
+  const paginate = (number) => {
+    setCurrentPage(number)
+  }
   const handleOrderByName = (e) => {
     e.preventDefault();
     DISPATCH(orderByName(e.target.value));
@@ -57,23 +58,6 @@ function Home() {
     e.preventDefault();
     DISPATCH(orderByWeight(e.target.value));
     setOrder(`Weight: ${e.target.value}`);
-  }
-  const onPageChange= (pageNumber)=>{
-    setCurrentPage(pageNumber);
-  }
-  const onPrevClick = ()=>{
-    if((currentPage-1) % PAGE_NUMBER_LIMIT === 0){
-      setMaxPageLimit(maxPageLimit - PAGE_NUMBER_LIMIT);
-      setMinPageLimit(minPageLimit - PAGE_NUMBER_LIMIT);
-    }
-    setCurrentPage(prev=> prev-1);
-  }
-  const onNextClick = ()=>{
-    if(currentPage+1 > maxPageLimit){
-      setMaxPageLimit(maxPageLimit + PAGE_NUMBER_LIMIT);
-      setMinPageLimit(minPageLimit + PAGE_NUMBER_LIMIT);
-    }
-    setCurrentPage(prev=>prev+1);
   }
 
   return(
@@ -99,15 +83,12 @@ function Home() {
       </div>: 
         <>
           <div className="Pagination">
-          <Pagination 
-            dogsPerPage={dogsPerPage} 
-            allDogs={DOGS.length} 
-            currentPage={currentPage}
-            minPageLimit = {minPageLimit}
-            maxPageLimit = {maxPageLimit}
-            onPrevClick={onPrevClick} 
-            onNextClick={onNextClick}
-            onPageChange={onPageChange} />
+            <Pagination 
+              dogsPerPage={dogsPerPage} 
+              allDogs={DOGS.length} 
+              currentPage={currentPage}
+              paginate={paginate}
+              />
           </div>
           <div className="Filters-container">
             <button 
@@ -148,7 +129,7 @@ function Home() {
             <div className="Weight-Filter">
               <label>Filter by weight: </label>
               <select onChange={e => {handleFilterByWeight(e)}}>
-                <option value="" disabled selected hidden>Select...</option>
+                <option value="" disabled hidden>Select...</option>
                 <option value='asc'>Light</option>
                 <option value='desc'>Heavy</option>
               </select>

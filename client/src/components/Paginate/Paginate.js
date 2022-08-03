@@ -1,11 +1,8 @@
 import React from 'react'
 import './Paginate.css'
 
-const Paginate = (props) => {
-  const { currentPage, maxPageLimit, minPageLimit, allDogs,dogsPerPage} = props;
+const Paginate = ({ currentPage, paginate, allDogs,dogsPerPage }) => {
   const pages = [];
-  let pageIncrementEllipses = null;
-  let pageDecremenEllipses = null;
   const PREV_NEXT= Math.ceil(allDogs/dogsPerPage);
     
   for(let i = 1; i <= Math.ceil(allDogs/dogsPerPage); i++) {
@@ -13,32 +10,19 @@ const Paginate = (props) => {
   }
 
   const handlePrevClick = ()=>{
-    props.onPrevClick();
+    if(currentPage > 1){
+      paginate(currentPage - 1);
+    }
   }
   const handleNextClick = ()=>{
-    props.onNextClick();
+    if(currentPage < PREV_NEXT){
+      paginate(currentPage + 1);
+    } 
   }
-  const handlePageClick = (e)=>{
-    props.onPageChange(Number(e.target.id));
+  const handlePageClick = (page)=>{
+    paginate(page);
   }
-  const pageNumbers = pages.map(page => {
-    if(page <= maxPageLimit  && page > minPageLimit) {
-      return(
-        <li key={page} id={page} onClick={handlePageClick} 
-            className={`${currentPage===page ? 'active' : null} numbers`}>
-            {page}
-        </li>
-      );
-    }else{
-      return null;
-    }
-  });
-  if(pages.length > maxPageLimit){
-    pageIncrementEllipses = <li className='dots'>&hellip;</li>
-  }
-  if(minPageLimit >=1){
-    pageDecremenEllipses = <li className='dots'>&hellip;</li> 
-  }
+ 
   return (
     <nav>
       <ul className="pagination"> 
@@ -50,9 +34,15 @@ const Paginate = (props) => {
               Prev
           </button>
         </li>
-        {pageDecremenEllipses}
-        {pageNumbers}
-        {pageIncrementEllipses}
+        {pages.map(page => (
+          <li key={page} className="page-item">
+            <button
+              className={`page-link ${currentPage === page ? 'active' : ''}`}
+              onClick={() => handlePageClick(page)}>
+                {page}
+            </button>
+          </li>
+        ))}
         <li className="page-item">
           <button 
             className={`next ${currentPage === PREV_NEXT ? 'disabled' : ''}`}
