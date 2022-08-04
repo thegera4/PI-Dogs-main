@@ -41,3 +41,14 @@
     margin-right: 2rem;
   }
 }
+@media screen and (max-width:414px) {
+  .navbar > img{
+    margin-left: 0;
+    width: 100px;
+    height: 50px;
+  }
+  .nav-span{
+    margin-right: 0;
+    font-size: 1rem;
+  }
+}

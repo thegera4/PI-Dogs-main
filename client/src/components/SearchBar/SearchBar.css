@@ -74,3 +74,11 @@ input:focus {
       margin-top: .5rem;
 }
 }
+@media screen and (max-width:414px) {
+  .error-message {
+      width: 400px;
+      height: 100px;
+      padding: 1px 1px 1px 30px;
+      margin-top: .5rem;
+  }
+}
