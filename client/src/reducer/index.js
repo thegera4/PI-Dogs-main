@@ -1,13 +1,15 @@
 import { GET_ALL_DOGS, GET_DOG_BY_NAME, ORDER_BY_NAME, GET_TEMPERAMENTS,
   ORDER_BY_TEMPERAMENT, FILTER_BY_CREATED, GET_DOG_BY_ID, CLEAR_DETAILS,
-  POST_DOG, ORDER_BY_WEIGHT, ERROR_IN_NAME, CLEAR_ERROR } from "../actions";
+  POST_DOG, ORDER_BY_WEIGHT, ERROR_IN_NAME, CLEAR_ERROR, ERROR_IN_POST 
+} from "../actions";
 
 const initialState = {
     dogs:[],
     allDogs: [],
     temperaments: [],
     dogDetail: {},
-    error: null
+    error: null,
+    postError: null
 }
 
 function rootReducer(state=initialState, action){ 
@@ -83,7 +85,13 @@ function rootReducer(state=initialState, action){
     case CLEAR_ERROR:
       return {
         ...state,
-        error: null
+        error: null,
+        postError: null
+      }
+    case ERROR_IN_POST:
+      return {
+        ...state,
+        postError: action.payload
       }
     default:
       return state

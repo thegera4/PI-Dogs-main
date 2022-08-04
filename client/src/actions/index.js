@@ -12,6 +12,7 @@ export const POST_DOG = "POST_DOG";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const ERROR_IN_NAME = "ERROR_IN_NAME";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+export const ERROR_IN_POST = "ERROR_IN_POST";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -102,7 +103,7 @@ export function clearDogDetail(){
 }
 
 export function postDog(payload){
-    return function(){
+    return function(dispatch){
         fetch("http://localhost:3001/dogs", {
             method: "POST",
             headers: {
@@ -112,7 +113,13 @@ export function postDog(payload){
         })
         .then(res => res.json())
         .then(info => info)
-        .catch(error => console.error(error));
+        .catch(error => {
+            dispatch({
+                type: ERROR_IN_POST,
+                payload: 'error'
+            })
+        })
+            
     }
 }
 
@@ -123,7 +130,7 @@ export function orderByWeight(payload){
     }
 }
 
-export function clearSearchDogsError(){
+export function clearError(){
     return {
         type: CLEAR_ERROR
     }

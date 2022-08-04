@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
-import { searchDogs, clearSearchDogsError } from '../../actions'
+import { searchDogs, clearError } from '../../actions'
 import './SearchBar.css'
 import Search from '../../assets/icons/search.png'
 export class SearchBar extends Component {
@@ -28,7 +28,7 @@ export class SearchBar extends Component {
   }
   handleSubmit(e){
     e.preventDefault();
-    this.props.clearSearchDogsError();
+    this.props.clearError();
     this.props.searchDogs(this.state.search);
     this.setState({
       search: '',
@@ -102,7 +102,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return {
     searchDogs: (name) => dispatch(searchDogs(name)),
-    clearSearchDogsError: () => dispatch(clearSearchDogsError())
+    clearError: () => dispatch(clearError())
   }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);

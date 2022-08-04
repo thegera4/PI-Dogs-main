@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { getTemperaments, postDog } from '../../actions/index'
+import { getTemperaments, postDog, clearError } from '../../actions/index'
 import './CreateDog.css'
 import { selectHeight, selectWeight, selectLifespan,
          containsSpecialChars, containsNumbers } from './utils'
@@ -12,6 +12,8 @@ function CreateDog() {
   const DISPATCH = useDispatch();
   const HISTORY = useHistory();
   const TEMPERAMENTS = useSelector(state => state.temperaments);
+  const ERROR = useSelector(state => state.error);
+  const POST_ERROR = useSelector(state => state.postError);
   const AZ_TEMPERAMENTS = 
         TEMPERAMENTS.sort((a, b) => a.name.localeCompare(b.name));
   const FINAL_TEMPERAMENTS = 
@@ -37,7 +39,10 @@ function CreateDog() {
   let dogName = input.name;
   const tempArr = []; 
 
-  useEffect(() => DISPATCH(getTemperaments()), [DISPATCH]);
+  useEffect(() => {
+    DISPATCH(clearError());
+    DISPATCH(getTemperaments())
+  }, [DISPATCH]);
   useEffect(() => {
     if(dogName === '' || dogName === undefined || dogName === null || 
        containsSpecialChars(dogName) || containsNumbers(dogName)) {
@@ -101,14 +106,15 @@ function CreateDog() {
   const handleMaxLifespan = (e) => {
     setInput({...input,lsmax: e.target.value});
   }
+
   function handleSubmit(e) {
     e.preventDefault()
     input.height = input.hmin + ' - ' + input.hmax;
     input.weight = input.wmin + ' - ' + input.wmax;
     input.lifespan = input.lsmin + ' - ' + input.lsmax;
     DISPATCH(postDog(input))
-    alert("Dog Created!")
-    setInput({
+    alert("Success! You dog breed was created!")
+      setInput({
       name: '',
       hmin: '0',
       hmax: '9',
@@ -123,7 +129,9 @@ function CreateDog() {
       image: '',
     })
     HISTORY.push('/home')
+    
   }
+
   const handleDelete = (temp) => {
     setInput({...input, temperaments: input.temperaments.filter(el => el !== temp)});
   }
@@ -145,7 +153,8 @@ function CreateDog() {
     }
     return false
   }
-  console.log(tempArr)
+  console.log(POST_ERROR)
+ 
   return (
     <>
       <NavBar createDogPage="CDP"/>
