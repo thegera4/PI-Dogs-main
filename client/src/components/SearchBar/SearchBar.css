@@ -5,7 +5,6 @@
   margin-left: 1rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  margin-top: 1rem;
 }
 .search-icon:hover{
   transform: scale(1.5);
@@ -13,6 +12,7 @@
 .box{
   display: flex;
   flex-direction: row;
+  margin-top: -10px;
 }
 input {
   padding: 10px;
@@ -53,4 +53,15 @@ input:focus {
 .search-btn:disabled{
   background: #1e1e1e00;
   cursor: not-allowed;
+}
+.error-message {
+			border: 1px solid;
+			margin: 10px 0px;
+			padding: 10px 10px 10px 50px;
+			background-repeat: no-repeat;
+			background-position: 10px center;
+      margin-top: 2rem;
+			color: #D63301;
+			background-color: #9b381496;
+			background-image: url('https://i.imgur.com/GnyDvKN.png');
 }

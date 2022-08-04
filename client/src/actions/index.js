@@ -10,6 +10,8 @@ export const GET_DOG_BY_ID = "GET_DOG_BY_ID";
 export const CLEAR_DETAILS = "GET_DOG_DETAILS";
 export const POST_DOG = "POST_DOG";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const ERROR_IN_NAME = "ERROR_IN_NAME";
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -36,7 +38,10 @@ export function searchDogs(name){
             })
         })
         .catch(err => {
-            console.error(err);
+            dispatch({
+                type: ERROR_IN_NAME,
+                payload: err
+            })
         })
     }
 }
@@ -115,5 +120,11 @@ export function orderByWeight(payload){
     return {
         type: ORDER_BY_WEIGHT,
         payload
+    }
+}
+
+export function clearSearchDogsError(){
+    return {
+        type: CLEAR_ERROR
     }
 }
