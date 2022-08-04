@@ -52,3 +52,9 @@ li{
 .numbers{
   cursor: pointer;
 }
+@media screen and (max-width:768px){
+  .active{
+    background-color: transparent;
+    color: red;
+  }
+}

@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;500;700&display=swap');
-body{
-  overflow:hidden;
-}
 .Header{
   display: flex;
   flex-direction: row;
@@ -162,4 +159,132 @@ option{
   z-index: 9999;
   font-size: 100px;
   margin: 0 auto;
+}
+
+/*@media only screen and (max-width:1024px){
+  .Header{
+    height: 50vh;
+  }
+  .left-header{
+    margin-left: 5rem;
+    margin-top: .5rem;
+  }
+  .left-header h1{
+    font-size: 2rem;
+  }
+  .left-header p{
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+  }
+  .searchbar-container{
+    width: 50%;
+  }
+  .right-header{
+    width: 50%; 
+  }
+  .right-header img{
+    width: 350px;
+    height: 350px;
+  }
+  .Created-Filter,
+  .AZZA-Filter,
+  .Temperaments-Filter,
+  .Weight-Filter {
+    display: flex;
+    flex-direction: column;
+    width: 200px; 
+  }
+  .Cards-Container{
+    margin-left: 10%;
+    grid-template-columns: repeat(2, 2fr); 
+  }
+  .loader-container{
+    left: 10%;
+  }
+}*/
+
+@media screen and (max-width:768px) {
+  .Header{
+    width: 100%;
+    overflow-x: hidden;
+    height: 50vh;
+  }
+  .left-header{
+    width: 50%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .right-header{
+    margin-top: 0;
+    width: 50%;
+  }
+  .left-header h1{
+    position: relative;
+    font-size: 2rem;
+    top: 15rem;
+    left: 50%;
+    width: 360px;
+  }
+  .left-header p{
+    display:none;
+  }
+  .searchbar-container p{
+    display: block;
+  }
+  .right-header img{
+    position: relative;
+    top: 1rem;
+    right: 50%;
+    width: 250px;
+    height: 250px;
+  }
+  .searchbar-container{
+    position: relative;
+    top: 10rem;
+    left: 50%;
+  }
+  .Pagination{
+    position: relative;
+    top: 500px;
+    left: -40%;
+    width: 100%;
+    flex-wrap: wrap;
+    transform: rotate(90deg) scale(.9);
+  }
+  .Pagination button{
+    display: flex;
+    width: 100px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .Filters-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    margin-top: -7rem;
+    transform: scale(.6);
+  }
+  .Created-Filter,
+  .AZZA-Filter,
+  .Temperaments-Filter,
+  .Weight-Filter {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  .Cards-Container{
+   display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -2rem;
+    height: 100%;
+  }
+  .loader-container{
+    width: 500px;
+    left: -20%;
+    transform: scale(0.4);
+    background-color: red;
+  }
 }
