@@ -90,17 +90,15 @@ select::-ms-expand {
    display: none;
 }
 .AZZA-Filter{
-  min-width: 230px;
+  min-width: 220px;
 }
 .Temperaments-Filter{
-  min-width: 450px;
-}
-label{
-  background: rgb(126, 109, 109);
+  min-width: 400px;
 }
 .Created-Filter,
 .AZZA-Filter,
-.Temperaments-Filter {
+.Temperaments-Filter,
+.Weight-Filter {
    position: relative;
    display: flex;
    line-height: 3;
@@ -113,7 +111,18 @@ option{
 }
 .Created-Filter::after,
 .AZZA-Filter::after,
-.Temperaments-Filter::after {
+.Temperaments-Filter::after,
+.Weight-Filter::after
+ {
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: #fff;
+   opacity: 0;
+   transition: opacity 0.2s ease-in-out;
   content: '\25BC';
   position: absolute;
   top: 0;
@@ -127,8 +136,13 @@ option{
 .Created-Filter:hover::after{
   color: #1E1E1E;
 }
-label{
-  color: #fff;
+.AZZA-Filter label,
+.Created-Filter  label,
+.Temperaments-Filter label,
+.Weight-Filter label{
+  background-color: #F3F3F3;
+  color: #1E1E1E;
+  border: 1px solid #1E1E1E;
   font-size: 1rem;
   font-family: 'Josefin Sans', sans-serif;
 }
