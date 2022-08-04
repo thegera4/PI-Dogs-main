@@ -12,17 +12,19 @@ export class SearchBar extends Component {
     }
   } 
   wrapperRef = createRef();
+ 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
+     
   }
   componentWillUnmount(){
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
   handleInputChange(e){
     e.preventDefault();
-    this.setState({
-      search: e.target.value
-    })
+    const REGEX = /^[A-Za-z]+$/;
+    if (e.target.value === "" || REGEX.test(e.target.value))
+      this.setState({ search: e.target.value });
   }
   handleSubmit(e){
     e.preventDefault();
@@ -31,6 +33,8 @@ export class SearchBar extends Component {
       search: '',
       toggle: false
     })
+   
+   
   }
   handleToggle(e){
     e.preventDefault();
@@ -45,28 +49,36 @@ export class SearchBar extends Component {
       })
     }
   }
+
   render() {
     const { search, toggle } = this.state;
     return (
       <div >
       { !toggle ?
         (
+          <>
           <img 
           src={Search} 
           alt="search" 
           className="search-icon"
           onClick={(e) => this.handleToggle(e)}/>
+          <div><p>Error: Word is not included in a dog's breed name!</p></div>
+          </>
         ) :
         (
           <div ref={this.wrapperRef} className="box">
             <input 
-              type="text"  
+              title="Please enter letters only."
+              type="text" 
+              placeholder="Please enter letters only"
               value={search} 
               autoFocus={true} 
               onChange={(e) => this.handleInputChange(e)} 
             />
             <button 
               type= 'submit'
+              className="search-btn"
+              disabled={!search}
               onClick={(e) => this.handleSubmit(e)}>
                 Search
             </button>

@@ -59,7 +59,7 @@ function Home() {
     DISPATCH(orderByWeight(e.target.value));
     setOrder(`Weight: ${e.target.value}`);
   }
-
+ console.log(getAllDogs())
   return(
     <div>
       <NavBar />
@@ -98,7 +98,7 @@ function Home() {
             <div className="AZZA-Filter">
               <label>Filter by name: </label>
               <select onChange={e => {handleOrderByName(e)}}>
-                <option value="">Select</option>
+                <option value="" >Select</option>
                 <option value='az'>A-Z</option>
                 <option value='za'>Z-A</option>
               </select>
@@ -129,7 +129,7 @@ function Home() {
             <div className="Weight-Filter">
               <label>Filter by weight: </label>
               <select onChange={e => {handleFilterByWeight(e)}}>
-                <option value="" disabled hidden>Select...</option>
+                <option value="" >Select...</option>
                 <option value='asc'>Light</option>
                 <option value='desc'>Heavy</option>
               </select>

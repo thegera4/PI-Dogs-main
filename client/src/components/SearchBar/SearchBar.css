@@ -46,4 +46,11 @@ input:focus {
   color: #fff;
   font-size: 20px;
 }
-
+.box > input::placeholder{
+  color: #1e1e1e9f;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.search-btn:disabled{
+  background: #1e1e1e00;
+  cursor: not-allowed;
+}
