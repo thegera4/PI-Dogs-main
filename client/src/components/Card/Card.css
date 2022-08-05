@@ -48,7 +48,7 @@
   text-align: center;
 }
 
-@media screen and (max-width:768px){
+@media screen and (min-width:768px){
   .card-container{
     margin-left: 10rem;
     transform: scale(.8);
@@ -56,6 +56,14 @@
   }
   .card-container:hover{
     transform: scale(.7);
+  }
+}
+
+@media screen and (max-width:540px) {
+  .card-container{
+    margin-left: 2rem;
+    transform: scale(.7);
+    margin-bottom: -5rem;
   }
 }
 
@@ -69,7 +77,7 @@
 
 @media screen and (max-width:360px) {
     .card-container{
-    margin-left: -.5rem;
+    margin-left: -1.5rem;
     transform: scale(.6);
     margin-bottom: -6rem;
   }

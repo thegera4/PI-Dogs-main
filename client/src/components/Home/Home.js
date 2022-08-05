@@ -76,7 +76,7 @@ function Home() {
           <img src={Bella} alt="Bella" />
         </div>
       </div>
-      { !loading? 
+      { loading? 
       <div className="loader-container">
           <Loader />
       </div>: 

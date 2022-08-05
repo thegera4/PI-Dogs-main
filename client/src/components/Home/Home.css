@@ -203,6 +203,119 @@ option{
   }
 }*/
 
+@media screen and (max-width:820px) {
+  .Header{
+    height: 50vh;
+  }
+  .left-header{
+    width: 50%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .right-header{
+    margin-top: 0;
+    width: 50%;
+  }
+  .left-header h1{
+    position: relative;
+    font-size: 2rem;
+    top: 15rem;
+    left: 50%;
+    width: 360px;
+  }
+  .left-header p{
+    display:none;
+  }
+  .searchbar-container p{
+    display: block;
+  }
+  .right-header img{
+    position: relative;
+    top: 1rem;
+    right: 50%;
+    width: 250px;
+    height: 250px;
+  }
+  .searchbar-container{
+    position: relative;
+    top: 10rem;
+    left: 50%;
+  }
+  .Pagination{
+    position: relative;
+    top: 500px;
+    left: -40%;
+    width: 100%;
+    flex-wrap: wrap;
+    transform: rotate(90deg) scale(.9);
+  }
+  .Pagination button{
+    display: flex;
+    width: 100px;
+    height: 30px;
+    font-size: 1rem;
+    transform: rotate(-90deg) scale(.9);
+  }
+  .Filters-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    margin-top: -7rem;
+    transform: scale(.6);
+  }
+  .Created-Filter,
+  .AZZA-Filter,
+  .Temperaments-Filter,
+  .Weight-Filter {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  .Cards-Container{
+   display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -2rem;
+    height: 100%;
+  }
+  .loader-container{
+    width: 500px;
+    left: -15%;
+    transform: scale(0.5);
+  }.Header{
+    width: 100%;
+    height: 50vh;
+  }
+  .left-header h1{
+    position: relative;
+    font-size: 2rem;
+    top: 15rem;
+    left: 50%;
+    width: 360px;
+  }
+  .left-header p{
+    display:none;
+  }
+  .searchbar-container p{
+    display: block;
+  }
+  .right-header img{
+    position: relative;
+    right: 50%;
+    width: 250px;
+    height: 250px;
+  }
+  .Cards-Container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -2rem;
+    height: 100%;
+  }
+}
 @media screen and (max-width:768px) {
   .Header{
     width: 100%;
@@ -256,6 +369,7 @@ option{
     width: 100px;
     height: 30px;
     font-size: 1rem;
+    transform: rotate(-90deg) scale(.9);
   }
   .Filters-container{
     display: flex;
@@ -286,6 +400,46 @@ option{
     left: -15%;
     transform: scale(0.5);
   }
+}
+@media screen and (max-width:540px) {
+  .Header{
+    height: 55vh;
+  }
+  .left-header h1{
+    position: relative;
+    font-size: 1rem;
+    top: 13rem;
+    left: 60%;
+    width: 360px;
+  }
+  .left-header p{
+    display:none;
+  }
+  .searchbar-container p{
+    display: block;
+  }
+  .right-header img{
+    position: relative;
+    top: 1rem;
+    right: 50%;
+    width: 200px;
+    height: 200px;
+  }
+  .searchbar-container{
+    position: relative;
+    top: 8rem;
+    left: 50%;
+    transform: scale(0.6);
+  }
+  .Pagination{
+    position: relative;
+    top: 500px;
+    left: -40%;
+    width: 100%;
+    flex-wrap: wrap;
+    transform: rotate(90deg) scale(.9);
+  }
+
 }
 @media screen and (max-width:414px) {
   .Header{
@@ -388,6 +542,9 @@ option{
   }
 }
 @media screen and (max-width:360px) {
+  .Header{
+    height: 45vh;
+  }
   .left-header p{
     width: 330px;
   }
@@ -398,29 +555,24 @@ option{
   }
 }
 @media screen and (max-width:280px) {
+   .Header{
+    height: 53vh;
+  }
   .left-header h1{
-    margin-left: -2rem;
+    top: .5rem;
+    left: 30%;
+    width: 180px;
   }
   .left-header p{
-    width: 280px;
-    margin-left: 0;
+    width: 250px;
   }
-  .Pagination{
-    left: -48%;
-  }
-  .Filters-container{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-    margin-top: -12rem;
-    margin-left: -1.5rem;
+  .searchbar-container{
     transform: scale(.5);
   }
-  .loader-container{
-    width: 200px;
-    left: -30%;
-    transform: scale(0.2);
+  .Pagination button{
+    left: -4rem;
+    top: 1rem;
+    transform: rotate(0deg);
   }
 
 }

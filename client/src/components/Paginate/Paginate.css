@@ -57,4 +57,11 @@ li{
     background-color: transparent;
     color: red;
   }
+  .page-link{
+    position: relative;
+    top: -2rem; /*hacia izq*/
+    left: -2.5rem; /*abajo*/
+    margin-left: 2rem;
+  }
+
 }
