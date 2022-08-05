@@ -22,11 +22,11 @@
   color: #1E1E1E;
   cursor: pointer;
 }
-@media screen and (min-width:1024px) {
+/*@media screen and (min-width:1024px) {
   .nav-span{
-    margin-right: 10rem;
+    margin-right: 5rem;
   }
-}
+}*/
 @media screen and (max-width:912px){
   .navbar{
     margin-left: 0;

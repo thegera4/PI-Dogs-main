@@ -77,3 +77,11 @@ li{
   }
 
 }
+@media screen and (max-width:375px){
+  .page-link{
+    margin-left: 5rem;
+
+    
+  }
+
+}
