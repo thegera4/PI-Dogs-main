@@ -247,3 +247,84 @@ label{
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+@media screen and (min-width: 820px) and (max-width: 1280px){
+  .home-container{
+    transform: scale(0.8);
+    left: 2%;
+  }
+  .form {
+    width: 70%;
+  }
+  
+}
+@media screen and (max-width: 768px){
+  .home-container{
+    transform: scale(0.5);
+    left: 0;
+    top: 30px;
+    opacity: 0.8;
+  }
+  .form {
+    width: 95%;
+  }
+  
+}
+@media screen and (max-width: 540px){
+  .home-container{
+    transform: scale(0.4);
+    left: 0;
+    top: 30px;
+    opacity: 0.6;
+  }
+  .form {
+    width: 100%;
+    transform: scale(0.6);
+    margin-top: -53%;
+  }
+  
+}
+@media screen and (max-width: 414px){
+  .home-container{
+    position: relative;
+    transform: scale(0.4);
+    top:-80px;
+    left: 70%;
+    z-index: 9999;
+  }
+  .form {
+    width: 100%;
+    transform: scale(.85) scaleX(1.1);
+    margin-top: -40%;
+  }
+  
+}
+@media screen and (min-width: 360px) and (max-width: 412px){
+  .home-container{
+    position: relative;
+    transform: scale(0.4);
+    top:-80px;
+    left: 70%;
+  }
+  .select-temperaments{
+    width: 80%;
+    font-size: 1.1rem;
+  }
+  input::placeholder{
+    font-size: .9rem;
+  }
+  
+}
+@media screen and (max-width: 280px){
+  .select-container{
+    flex-direction: column;
+  }
+  .select-temperaments{
+    width: 50%;
+    font-size: .8rem;
+  }
+  input::placeholder{
+    font-size: .65rem;
+  }
+  
+}
