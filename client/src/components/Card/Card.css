@@ -48,7 +48,18 @@
   text-align: center;
 }
 
-@media screen and (min-width:768px){
+@media screen and (max-width:912px){
+  .card-container{
+    margin-left: 1rem;
+    margin-right: -13rem;
+    transform: scale(.7);
+  }
+  .card-container:hover{
+    transform: scale(.2);
+  }
+}
+
+@media screen and (max-width:768px){
   .card-container{
     margin-left: 10rem;
     transform: scale(.8);
