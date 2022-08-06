@@ -79,26 +79,49 @@ input:focus {
   }
 }*/
 @media screen and (max-width:912px) {
+  .box{
+    transform: scale(0.8);
+    margin-left: -9rem;
+  }
   .error-message {
       width: 400px;
       height: 110px;
 			padding: 1px 1px 1px 30px;
       margin-top: .5rem;
+      margin-left: -9rem;
+      transform: scale(0.8);
   }
 }
 @media screen and (max-width:768px){
+  .search-icon{
+    width: 50px;
+    height: 50px;
+    margin-left: 160px;
+    margin-top: 50px;
+  }
+  .box{
+    width: 400px;
+    transform: scale(0.7);
+    margin-top: 20px
+  }
   .error-message {
       width: 400px;
       height: 110px;
 			padding: 1px 1px 1px 30px;
       margin-top: .5rem;
+      margin-left: -20px;
+      transform: scale(.7);
   }
 }
 @media screen and (max-width:414px) {
   .error-message {
-      width: 400px;
-      height: 100px;
-      padding: 1px 1px 1px 30px;
-      margin-top: .5rem;
+      margin-top: -1.5rem;
+      margin-left: -20px;
+      transform: scale(.7);
+  }
+}
+@media screen and (max-width:280px) {
+  .box{
+    margin-left: -20px;
   }
 }

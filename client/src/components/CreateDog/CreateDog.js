@@ -12,7 +12,6 @@ function CreateDog() {
   const DISPATCH = useDispatch();
   const HISTORY = useHistory();
   const TEMPERAMENTS = useSelector(state => state.temperaments);
-  const ERROR = useSelector(state => state.error);
   const POST_ERROR = useSelector(state => state.postError);
   const AZ_TEMPERAMENTS = 
         TEMPERAMENTS.sort((a, b) => a.name.localeCompare(b.name));

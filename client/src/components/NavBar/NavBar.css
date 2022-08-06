@@ -31,24 +31,30 @@
   .navbar{
     margin-left: 0;
     max-width: 100%;
+    height: 70px;
   }
   .navbar > img{
     margin-left: 2rem;
+    transform: scale(0.8);
   }
   .nav-span{
     margin-right: 2rem;
+    font-size: 1.2rem;
   }
 }
 @media screen and (max-width:768px){
   .navbar{
     margin-left: 0;
     max-width: 100%;
+    height: 60px;
   }
   .navbar > img{
     margin-left: 2rem;
+    transform: scale(0.8);
   }
   .nav-span{
     margin-right: 2rem;
+    font-size: 1.5rem;
   }
 }
 @media screen and (max-width:540px) {
