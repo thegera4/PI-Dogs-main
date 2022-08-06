@@ -22,3 +22,23 @@
   width: 100px;
   height: 100px;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .not-found{
+    margin-top: -10rem;
+    transform: scale(0.6);
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 600px) {
+  .not-found{
+    margin-top: -10rem;
+    transform: scale(0.6);
+  }
+}
+@media screen and (min-width: 280px) and (max-width: 399px) {
+  .not-found{
+    margin-top: -10rem;
+    transform: scale(0.6);
+  }
+}
+  
