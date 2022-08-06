@@ -78,4 +78,16 @@ const getDogById = async (req, res) => {
 }
 }
 
-module.exports = { getAllDogs, postDog, getDogById };
+const deleteDog = (req, res) => {
+  const ID = req.params.id;
+  if (!ID) return res.status(400).send({msg: 'Missing Id!'});
+  Dog.destroy({
+    where: { id: ID }
+  }).then(() => {
+    res.status(200).send({msg: 'Dog was deleted!'});
+  }).catch(err => {
+    res.status(400).send({msg: 'Something went wrong!: ' + err});
+  });
+}
+
+module.exports = { getAllDogs, postDog, getDogById, deleteDog };
