@@ -63,7 +63,6 @@ function Home() {
     DISPATCH(deleteDog(id))
     
   }
-  console.log(arrNAMES)
   return(
     <div>
       <NavBar />
@@ -144,42 +143,47 @@ function Home() {
             </div>
           </div>
           <div className="Cards-Container">
-          {
-            RENDERED_DOGS?.map(dog => {
-              return(
-                  <Link to={`/dog/${dog.id}`} key={dog.id}>
-                    <Card
-                      name={dog.name} 
-                      image={
-                        dog.image?
-                        dog.image.url:
-                        DogPic} 
-                      temperament={
-                        dog.temperament?
-                        dog.temperament.split(', ')[0]:
-                        'No record'} 
-                      weight={
-                        dog.weight?
-                        dog.weight:
-                        'No record'}
-                        ></Card>
-                    { dog.hasOwnProperty("createdInDb") ? 
-                    arrNAMES.push(dog.id) : null}
-                  </Link>
-              )
-            })
-          }
+            {
+              RENDERED_DOGS?.map(dog => {
+                return(
+                  
+                    <Link to={`/dog/${dog.id}`} key={dog.id}>
+                      <Card
+                        name={dog.name} 
+                        image={
+                          dog.image?
+                          dog.image.url:
+                          DogPic} 
+                        temperament={
+                          dog.temperament?
+                          dog.temperament.split(', ')[0]:
+                          'No record'} 
+                        weight={
+                          dog.weight?
+                          dog.weight:
+                          'No record'}
+                          ></Card>
+                      { dog.hasOwnProperty("createdInDb") ? 
+                      arrNAMES.push(dog.id) : null}
+                    </Link>
+                    
+                  
+                )
+              })
+            }
           </div>
-          <div>
-            { arrNAMES?.map(id => {
-              return(
-                <button 
-                  className="btn-delete" 
-                  onClick={() => handleDelete(id)}>
-                    X
-                </button>
-              )
-              })}
+          <div className="btns-delete-container">
+                    { arrNAMES?.map(id => {
+                      return(
+                        <button 
+                          key={id}
+                          className="btn-delete" 
+                          onClick={() => handleDelete(id)}>
+                            X
+                        </button>
+                      )
+                    })}
+                  
           </div>
         </>
       }
