@@ -13,6 +13,7 @@ export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const ERROR_IN_NAME = "ERROR_IN_NAME";
 export const CLEAR_ERROR = "CLEAR_ERROR";
 export const ERROR_IN_POST = "ERROR_IN_POST";
+export const DELETE_DOG = "DELETE_DOG";
 
 export function getAllDogs(){
     return async function(dispatch){
@@ -133,5 +134,20 @@ export function orderByWeight(payload){
 export function clearError(){
     return {
         type: CLEAR_ERROR
+    }
+}
+
+export function deleteDog(id){
+    return function(dispatch){
+        fetch(`http://localhost:3001/dogs/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(info => {
+            return dispatch({
+                type: DELETE_DOG
+            })
+        })
+        .catch(error => console.error(error));
     }
 }

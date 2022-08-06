@@ -160,6 +160,25 @@ option{
   font-size: 100px;
   margin: 0 auto;
 }
+.delete-btns{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  background-color: aqua;
+}
+.btn-delete{
+  position:relative;
+  top: -1rem;
+  left: 90px;
+  margin-right: 690px;
+  background-color: red;
+  color: white;
+  border-radius: 9999px;
+  border: none;
+  z-index: 9999;
+}
 /*@media screen and (max-width:1024px){
   .Header{
     height: 43vh;

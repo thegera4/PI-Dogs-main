@@ -6,8 +6,8 @@ import NavBar from '../NavBar/NavBar'
 import SearchBar from '../SearchBar/SearchBar'
 import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllDogs, getTemperaments, orderByName, 
-orderByTemperament, filterDogsByCreated, orderByWeight } from '../../actions'
+import { getAllDogs, getTemperaments, orderByName, orderByTemperament, 
+         filterDogsByCreated, orderByWeight, deleteDog } from '../../actions'
 import { Link } from 'react-router-dom'
 import DogPic from '../../assets/images/dog_profile.jpg'
 import Bella from '../../assets/images/bella_home.png'
@@ -25,18 +25,18 @@ function Home() {
   const LAST_DOG = currentPage * dogsPerPage;
   const FIRST_DOG = LAST_DOG - dogsPerPage;
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
+  const arrNAMES = [];
 
   useEffect(() => {
     //BARK.play();
     //BARK.loop = false;
     DISPATCH(getAllDogs())
     DISPATCH(getTemperaments())
-  }, [DISPATCH])
+  }, [DISPATCH, DOGS])
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
     }, 1500)}, [])
-
   const paginate = (number) => {
     setCurrentPage(number)
   }
@@ -59,6 +59,11 @@ function Home() {
     DISPATCH(orderByWeight(e.target.value));
     setOrder(`Weight: ${e.target.value}`);
   }
+  const handleDelete = (id) => {
+    DISPATCH(deleteDog(id))
+    
+  }
+  console.log(arrNAMES)
   return(
     <div>
       <NavBar />
@@ -142,26 +147,39 @@ function Home() {
           {
             RENDERED_DOGS?.map(dog => {
               return(
-                <Link to={`/dog/${dog.id}`} key={dog.id}>
-                  <Card
-                    key={dog.id} 
-                    name={dog.name} 
-                    image={
-                      dog.image?
-                      dog.image.url:
-                      DogPic} 
-                    temperament={
-                      dog.temperament?
-                      dog.temperament.split(', ')[0]:
-                      'No record'} 
-                    weight={
-                      dog.weight?
-                      dog.weight:
-                      'No record'}/>
-                </Link>
+                  <Link to={`/dog/${dog.id}`} key={dog.id}>
+                    <Card
+                      name={dog.name} 
+                      image={
+                        dog.image?
+                        dog.image.url:
+                        DogPic} 
+                      temperament={
+                        dog.temperament?
+                        dog.temperament.split(', ')[0]:
+                        'No record'} 
+                      weight={
+                        dog.weight?
+                        dog.weight:
+                        'No record'}
+                        ></Card>
+                    { dog.hasOwnProperty("createdInDb") ? 
+                    arrNAMES.push(dog.id) : null}
+                  </Link>
               )
             })
           }
+          </div>
+          <div>
+            { arrNAMES?.map(id => {
+              return(
+                <button 
+                  className="btn-delete" 
+                  onClick={() => handleDelete(id)}>
+                    X
+                </button>
+              )
+              })}
           </div>
         </>
       }
