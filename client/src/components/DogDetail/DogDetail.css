@@ -121,33 +121,51 @@ body{
   align-content: center;
 
 }
-
+.btn-delete{
+  position: absolute;
+  top: 12%;
+  left: 67%;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  color: white;
+  border-radius: 9999px;
+  border: none;
+  z-index: 9999;
+}
+.btn-delete:hover{
+  transform: scale(1.1);
+}
 @media screen and (min-width: 768px) and (max-width: 1280px) {
-.General-container{
-  width: 80%;
-  transform: scale(0.9);
-  margin-top: -120px;
-}
-.General-container img{
-  width: 100%;
-  max-height: 500px;
-}
-.name-container h3{
-  margin-bottom: 40px;
-}
-.more-details {
-  width: 30%;
-}
-.back-container{
-  left: 0;
-  top: 1.5rem;
-  transform: scale(.6);
-}
-.loader{
-  transform: scale(0.6);
-  top: 200px;
-  left: -15%;
-}
+  .General-container{
+    width: 80%;
+    transform: scale(0.9);
+    margin-top: -120px;
+  }
+  .General-container img{
+    width: 100%;
+    max-height: 500px;
+  }
+  .name-container h3{
+    margin-bottom: 40px;
+  }
+  .more-details {
+    width: 30%;
+  }
+  .back-container{
+    left: 0;
+    top: 1.5rem;
+    transform: scale(.6);
+  }
+  .loader{
+    transform: scale(0.6);
+    top: 200px;
+    left: -15%;
+  }
+  .btn-delete{
+    top: 1%;
+    left: 90%;
+  }
 }
 @media screen and (max-width: 912px) {
 .loader{
@@ -164,36 +182,40 @@ body{
   }
 }
 @media screen and (max-width: 540px) {
-.back-container{
-  left: -.5rem;
-  transform: scale(.5);
-}
-.General-container{
-  width: 80%;
-  transform: scale(.9);
-  margin-top: -90px;
-}
-.name-container h1{
-  font-size: 1.5rem;
-}
-.name-container h3{
-  font-size: 1rem;
-}
-.more-details {
-  font-size: .9rem;
-  height: 50px;
-  width: 40%;
-}
-.details-container{
-  transform: scale(0.8);
-  margin-top: -5rem;
-  margin-bottom: 3.5rem;
-}
-.loader{
-  transform: scale(0.4);
-  top: 250px;
-  left: -37%;
-}
+  .back-container{
+    left: -.5rem;
+    transform: scale(.5);
+  }
+  .General-container{
+    width: 80%;
+    transform: scale(.9);
+    margin-top: -90px;
+  }
+  .name-container h1{
+    font-size: 1.5rem;
+  }
+  .name-container h3{
+    font-size: 1rem;
+  }
+  .more-details {
+    font-size: .9rem;
+    height: 50px;
+    width: 40%;
+  }
+  .details-container{
+    transform: scale(0.8);
+    margin-top: -5rem;
+    margin-bottom: 3.5rem;
+  }
+  .loader{
+    transform: scale(0.4);
+    top: 250px;
+    left: -37%;
+  }
+  .btn-delete{
+    top: 1%;
+    left: 85%;
+  }
 }
 @media screen and (max-width: 414px) {
   .General-container{
@@ -245,16 +267,16 @@ body{
   .name-container{
     width: 60%;
   }
-.name-container h1{
-  font-size: 1rem;
-}
-.name-container h3{
-  font-size: 12px;
-}
-.more-details {
-  transform: scale(0.7);
-  width: 40%;
-}
+  .name-container h1{
+    font-size: 1rem;
+  }
+  .name-container h3{
+    font-size: 12px;
+  }
+  .more-details {
+    transform: scale(0.7);
+    width: 40%;
+  }
   .details-container{
     margin-left:2.5rem;
     width: 80%;
@@ -265,5 +287,10 @@ body{
     transform: scale(0.2);
     top: 250px;
     left: -45%;
+  }
+  .btn-delete{
+    width: 30px;
+    height: 30px;
+    left: 85%;
   }
 }

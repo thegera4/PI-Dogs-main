@@ -160,17 +160,6 @@ option{
   font-size: 100px;
   margin: 0 auto;
 }
-.btn-delete{
-  position:relative;
-  top: -1rem;
-  left: 90px;
-  margin-right: 690px;
-  background-color: red;
-  color: white;
-  border-radius: 9999px;
-  border: none;
-  z-index: 9999;
-}
 /*@media screen and (max-width:1024px){
   .Header{
     height: 43vh;
@@ -534,17 +523,6 @@ option{
   }
   .Cards-Container{
     height: 1030px;
-  }
-  .btns-delete-container{
-    width: 30px;
-    height: 10px;
-  }
-  .btn-delete{
-    width: 20px;
-    top: -31rem;
-    left: 310px;
-    margin-bottom: 126px;
-    margin-right: 0;
   }
 }
 @media screen and (max-width:360px) {

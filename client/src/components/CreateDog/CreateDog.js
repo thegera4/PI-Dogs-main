@@ -12,7 +12,6 @@ function CreateDog() {
   const DISPATCH = useDispatch();
   const HISTORY = useHistory();
   const TEMPERAMENTS = useSelector(state => state.temperaments);
-  const POST_ERROR = useSelector(state => state.postError);
   const AZ_TEMPERAMENTS = 
         TEMPERAMENTS.sort((a, b) => a.name.localeCompare(b.name));
   const FINAL_TEMPERAMENTS = 
@@ -105,7 +104,6 @@ function CreateDog() {
   const handleMaxLifespan = (e) => {
     setInput({...input,lsmax: e.target.value});
   }
-
   function handleSubmit(e) {
     e.preventDefault()
     input.height = input.hmin + ' - ' + input.hmax;
@@ -130,7 +128,6 @@ function CreateDog() {
     HISTORY.push('/home')
     
   }
-
   const handleDelete = (temp) => {
     setInput({...input, temperaments: input.temperaments.filter(el => el !== temp)});
   }
@@ -152,7 +149,6 @@ function CreateDog() {
     }
     return false
   }
-  console.log(POST_ERROR)
  
   return (
     <>
@@ -165,7 +161,9 @@ function CreateDog() {
       </div>
       <div className="form">
         <div className="title">Create your own dog breed here!</div>
-        <div className="subtitle">Please complete the next form to create your breed in our database.</div>
+        <div className="subtitle">
+          Please complete the next form to create your breed in our database.
+        </div>
         <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-container ic1">
           <input 
@@ -260,13 +258,14 @@ function CreateDog() {
         {Object.keys(errors).length > 0?
           <div className="validation">
             <p>The next errors were found in the creation form:</p>
-            {Object.keys(errors).map((err, index) => <p key={index}>{errors[err]}</p>)}
+            {Object.keys(errors).map(
+              (err, index) => <p key={index}>{errors[err]}</p>)}
           </div> : 
           <button 
             type="submit" 
             disabled={input.name?false:true} 
             className={`submit ${input.name? 'enabled': 'disabled'}`}>
-            Create my dog!
+              Create my dog!
           </button>}
         </form>
       </div>

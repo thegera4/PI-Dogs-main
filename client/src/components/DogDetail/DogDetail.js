@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { getDogById, clearDogDetail } from '../../actions';
+import { getDogById, clearDogDetail, deleteDog } from '../../actions';
 import NavBar from '../NavBar/NavBar';
 import './DogDetail.css';
 import DogPawIcon from '../../assets/icons/dog-paw-icon.png';
@@ -19,6 +19,7 @@ export class DogDetail extends Component {
       loading: true
     }
     this.toggleDetails = this.toggleDetails.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   } 
   componentDidMount(){
     setTimeout(() => {
@@ -33,6 +34,11 @@ export class DogDetail extends Component {
     this.setState({
       toggle: !this.state.toggle
     })
+  }
+  handleDelete(id)  {
+    this.props.deleteDog(id);
+    alert('Dog deleted from database!');
+    this.props.history.push('/home');
   }
   render() {
     const STATUS = this.props.dogDetail.hasOwnProperty('msg');
@@ -58,6 +64,11 @@ export class DogDetail extends Component {
             </Link>
           </div>
           <div className="General-container">
+            {this.props.dogDetail[0].createdInDb ?
+              (<button 
+                className="btn-delete"
+                onClick={()=>this.handleDelete(this.props.dogDetail[0].id)}>
+                  X </button>) : null}
             <img 
             src={!CREATED_IN_DB ? 
             this.props.dogDetail[0]?.image.url : 
@@ -133,6 +144,7 @@ export const mapDispatchToProps = (dispatch) =>{
   return {
     getDogById: (id) => dispatch(getDogById(id)),
     clearDogDetail: () => dispatch(clearDogDetail()),
+    deleteDog: (id) => dispatch(deleteDog(id))
   }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(DogDetail);
