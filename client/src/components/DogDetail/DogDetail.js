@@ -40,7 +40,14 @@ export class DogDetail extends Component {
     alert('Dog deleted from database!');
     this.props.history.push('/home');
   }
+  handleTemperaments(arrTemps){
+    return arrTemps.map(temp => {
+      return temp.name
+    }).join(', ')
+  }
+
   render() {
+    console.log(this.props.dogDetail)
     const STATUS = this.props.dogDetail.hasOwnProperty('msg');
     if(STATUS){
       return (
@@ -95,7 +102,10 @@ export class DogDetail extends Component {
                       <h3>Temperaments:</h3>
                       <span>
                       {this.props.dogDetail[0]?.temperament?
-                      this.props.dogDetail[0]?.temperament : 'No records found'}
+                      this.props.dogDetail[0]?.temperament : 
+                      this.props.dogDetail[0]?.temperaments? 
+                      this.handleTemperaments(this.props.dogDetail[0]?.temperaments) :
+                      'No records found'}
                       </span>
                   </div>
                 </div>

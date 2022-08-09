@@ -27,7 +27,7 @@ function CreateDog() {
     lsmin: '0',
     lsmax: '4',
     lifespan: '',
-    temperaments: [],
+    temperament: [],
     image: '',
   });
   const [errors, setErrors] = useState({});
@@ -122,19 +122,20 @@ function CreateDog() {
       lsmin: '0',
       lsmax: '4',
       lifespan: '',
-      temperaments: [],
+      temperament: [],
       image: '',
     })
     HISTORY.push('/home')
     
   }
   const handleDelete = (temp) => {
-    setInput({...input, temperaments: input.temperaments.filter(el => el !== temp)});
+    setInput({...input, temperament: input.temperament.filter(el => el !== temp)});
   }
   function handleTemperaments(e) {
-    e.target.value !== "none" ? 
-    setInput({...input,temperaments: [...input.temperaments, e.target.value]}) :
-    setInput({...input});
+    setInput({...input,temperament: [...input.temperament, e.target.value]});
+  }
+  function  handleURL(e) {
+    setInput({...input, image: e.target.value});
   }
   function handleFocus(){
     if(dogName === '' || dogName === undefined || dogName === null || 
@@ -150,6 +151,7 @@ function CreateDog() {
     return false
   }
  
+  console.log(input);
   return (
     <>
       <NavBar createDogPage="CDP"/>
@@ -231,15 +233,15 @@ function CreateDog() {
         <div className="select-container">
           <select 
             className="select-temperaments" 
+            defaultValue={"Select"}
             onChange={(e) => handleTemperaments(e)}>
-            <option value="none">(Optional) Select temperaments...</option>
+            <option value="Select" disabled>(Optional) Select temperaments...</option>
             {FINAL_TEMPERAMENTS.map((el, index) =>
-              <option key={index} value={el.name.trim()}>{el.name}</option>)}
+              <option key={index} value={el.name}>{el.name}</option>)} {/*el.name.trim()*/}
           </select>
         </div>
         <div className="container-temperaments-selected">
-
-          {input.temperaments.map((temperament) => 
+          {input.temperament.map((temperament) => 
           checkIfExists(temperament))}
           {tempArr.map((temperament, index) =>
               <button key ={index} className="selected-temperament"
@@ -248,11 +250,13 @@ function CreateDog() {
                   <span>Delete</span>
               </button>
           )}
-  
           </div>
         <div className="input-container ic2">
-          <input className="input" 
-          type="text" placeholder="(Optional) Enter the image url: http://..." />
+          <input 
+          className="input" 
+          type="text" 
+          placeholder="(Optional) Enter the image url: http://..."
+          onChange={(e) => handleURL(e)}/>
           <label className="placeholder">Image (Url):</label>
         </div>
         {Object.keys(errors).length > 0?

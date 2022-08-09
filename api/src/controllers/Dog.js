@@ -61,7 +61,7 @@ const postDog = async (req, res) => {
     image
   });
   let temperamentDb = await Temperament.findAll({
-    where: { name: temperament + " " }
+    where: { name: temperament }
   });
   CREATED_DOG.addTemperament(temperamentDb);
   res.status(201).send({msg: 'Your dog was created!'});

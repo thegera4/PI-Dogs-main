@@ -15,10 +15,12 @@ export const CLEAR_ERROR = "CLEAR_ERROR";
 export const ERROR_IN_POST = "ERROR_IN_POST";
 export const DELETE_DOG = "DELETE_DOG";
 
+const ADDRESS = process.env.REACT_APP_API || "http://localhost:3001";
+
 export function getAllDogs(){
     return async function(dispatch){
         try{
-            var json = await axios.get("http://localhost:3001/dogs");
+            var json = await axios.get(`${ADDRESS}/dogs`);
             return dispatch({
                 type: GET_ALL_DOGS,
                 payload: json.data
@@ -32,7 +34,7 @@ export function getAllDogs(){
 
 export function searchDogs(name){
     return function(dispatch){
-        axios(`http://localhost:3001/dogs?name=${name}`)
+        axios(`${ADDRESS}/dogs?name=${name}`)
         .then(res => {
             dispatch({
                 type: GET_DOG_BY_NAME,
@@ -64,7 +66,7 @@ export function orderByName(payload){
 
 export function getTemperaments(){
     return function(dispatch){
-        fetch("http://localhost:3001/temperaments")
+        fetch(`${ADDRESS}/temperaments`)
         .then(res => res.json())
         .then(json => {
             return dispatch({
@@ -85,7 +87,7 @@ export function orderByTemperament(temperament){
 
 export function getDogById(id){
     return function(dispatch){
-        fetch(`http://localhost:3001/dogs/${id}`)
+        fetch(`${ADDRESS}/dogs/${id}`)
         .then(res => res.json())
         .then(details => {
         return dispatch({
@@ -105,7 +107,7 @@ export function clearDogDetail(){
 
 export function postDog(payload){
     return function(dispatch){
-        fetch("http://localhost:3001/dogs", {
+        fetch(`${ADDRESS}/dogs`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -139,7 +141,7 @@ export function clearError(){
 
 export function deleteDog(id){
     return function(dispatch){
-        fetch(`http://localhost:3001/dogs/${id}`, {
+        fetch(`${ADDRESS}/dogs/${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())

@@ -52,6 +52,7 @@ function Home() {
   }
   function handleFilterByCreated(e){
     DISPATCH(filterDogsByCreated(e.target.value));
+    setCurrentPage(1);
   }
   function handleFilterByWeight(e){
     e.preventDefault();
@@ -145,12 +146,14 @@ function Home() {
                     <Card
                       name={dog.name} 
                       image={
-                        dog.image?
-                        dog.image.url:
-                        DogPic} 
+                        dog.image === null ? DogPic :
+                        dog.image.url ? dog.image.url:
+                        dog.image ? dog.image : DogPic} 
                       temperament={
                         dog.temperament?
-                        dog.temperament.split(', ')[0]:'No record'} 
+                        dog.temperament.split(', ')[0]:
+                        dog.temperaments? 
+                        dog.temperaments[0]?.name:'No record'} 
                       weight={
                         dog.weight?
                         dog.weight:'No record'}/>
