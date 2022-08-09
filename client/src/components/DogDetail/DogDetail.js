@@ -45,9 +45,7 @@ export class DogDetail extends Component {
       return temp.name
     }).join(', ')
   }
-
   render() {
-    console.log(this.props.dogDetail)
     const STATUS = this.props.dogDetail.hasOwnProperty('msg');
     if(STATUS){
       return (

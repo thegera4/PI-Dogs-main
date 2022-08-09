@@ -41,8 +41,24 @@ function rootReducer(state=initialState, action){
       }
     case ORDER_BY_TEMPERAMENT:
       const allDogs = state.allDogs;
+      let isFound = null;
       const filteredByTemperament = action.payload === 'All' ? allDogs :
-        allDogs.filter(dog => dog.temperament?.includes(action.payload.trim()));
+        allDogs.filter(dog => {
+          if(dog.hasOwnProperty('temperament')){
+            return dog.temperament?.includes(action.payload.trim())
+          }
+          if(dog.hasOwnProperty('temperaments')){
+            isFound = dog.temperaments?.some( element => {
+              if(element.name === action.payload){
+                return true;
+              }
+              return false;
+            })
+            if(isFound){
+              return dog;
+            }
+          }
+        });
       return {
         ...state,
         dogs: filteredByTemperament
