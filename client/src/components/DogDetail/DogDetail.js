@@ -101,7 +101,7 @@ export class DogDetail extends Component {
                       <span>
                       {this.props.dogDetail[0]?.temperament?
                       this.props.dogDetail[0]?.temperament : 
-                      this.props.dogDetail[0]?.temperaments? 
+                      this.props.dogDetail[0]?.temperaments.length > 0 ? 
                       this.handleTemperaments(this.props.dogDetail[0]?.temperaments) :
                       'No records found'}
                       </span>

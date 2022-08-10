@@ -43,6 +43,7 @@ function rootReducer(state=initialState, action){
       const allDogs = state.allDogs;
       let isFound = null;
       const filteredByTemperament = action.payload === 'All' ? allDogs :
+        // eslint-disable-next-line array-callback-return
         allDogs.filter(dog => {
           if(dog.hasOwnProperty('temperament')){
             return dog.temperament?.includes(action.payload.trim())

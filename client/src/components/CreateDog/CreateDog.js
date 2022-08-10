@@ -150,8 +150,7 @@ function CreateDog() {
     }
     return false
   }
- 
-  console.log(input);
+  
   return (
     <>
       <NavBar createDogPage="CDP"/>

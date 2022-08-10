@@ -90,4 +90,25 @@ const deleteDog = (req, res) => {
   });
 }
 
-module.exports = { getAllDogs, postDog, getDogById, deleteDog };
+const updateDog = (req, res) => {
+  const ID = req.params.id;
+  const { name, weight, height, lifespan, image, temperament } = req.body;
+  if (!ID) return res.status(400).send({msg: 'Missing Id!'});
+
+  Dog.update({
+    name,
+    weight,
+    height,
+    lifespan,
+    image, 
+    temperament
+  }, {
+    where: { id: ID }
+  }).then(() => {
+    res.status(200).send({msg: 'Dog was updated!'});
+  }).catch(err => {
+    res.status(400).send({msg: 'Something went wrong!: ' + err});
+  });
+}
+
+module.exports = { getAllDogs, postDog, getDogById, deleteDog, updateDog };

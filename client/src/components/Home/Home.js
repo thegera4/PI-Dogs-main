@@ -59,6 +59,7 @@ function Home() {
     DISPATCH(orderByWeight(e.target.value));
     setOrder(`Weight: ${e.target.value}`);
   }
+  console.log(RENDERED_DOGS)
   return(
     <div className="Wrapper">
       <NavBar />
@@ -151,7 +152,7 @@ function Home() {
                       temperament={
                         dog.temperament?
                         dog.temperament.split(', ')[0]:
-                        dog.temperaments? 
+                        dog.temperaments?.length > 0 ? 
                         dog.temperaments[0]?.name:'No record'} 
                       weight={
                         dog.weight?
