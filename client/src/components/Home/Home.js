@@ -59,7 +59,6 @@ function Home() {
     DISPATCH(orderByWeight(e.target.value));
     setOrder(`Weight: ${e.target.value}`);
   }
-  console.log(RENDERED_DOGS)
   return(
     <div className="Wrapper">
       <NavBar />
