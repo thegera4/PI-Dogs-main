@@ -13,8 +13,8 @@ export class LandingPage extends Component {
         </div>
         <div className="right">
           <img src={Bella} alt="Bella Estrellita"/>
-          <h1>Welcome to Befos!</h1>
-          <p>
+          <h1 data-testid="page-title">Welcome to Befos!</h1>
+          <p data-testid="page-description">
           Here you'll find information about dog 
           breeds.
           Enjoy!

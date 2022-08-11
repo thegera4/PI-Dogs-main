@@ -84,7 +84,10 @@ export class DogDetail extends Component {
               <h1>{this.props.dogDetail[0]?.name}</h1>
               <h3>Lifespan: {this.props.dogDetail[0]?.lifespan}</h3>
             </div>
-              <button className="more-details" onClick={this.toggleDetails}>
+              <button 
+              data-testid="more-details"
+              className="more-details" 
+              onClick={this.toggleDetails}>
                 <span>
                   {!this.state.toggle ? 'More Details!' : 'Less Details!'}
                 </span>
