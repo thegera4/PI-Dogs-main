@@ -33,7 +33,7 @@ body{
 }
 .General-container img{
   width: 100%;
-  max-height: 700px;
+  max-height: 500px;
   border-radius: 20px 20px 0 0;
 }
 .name-container{
@@ -114,8 +114,8 @@ body{
 }
 .loader{
   position: relative;
-  top: 450px;
-  left: 20%;
+  top: 300px;
+  left: 10%;
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -136,7 +136,41 @@ body{
 .btn-delete:hover{
   transform: scale(1.1);
 }
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+@media screen and (min-width: 1280px) and (max-width: 1440px) {
+  .General-container{
+    width: 60%;
+    margin-top: -130px;
+    transform: scale(.9);
+  }
+  .General-container img{
+    width: 100%;
+    max-height: 500px;
+  }
+  .back-container{
+    margin-left: 8rem;
+  }
+  .name-container h3{
+    margin-bottom: 40px;
+  }
+  .more-details {
+    width: 30%;
+  }
+  .back-container{
+    left: 0;
+    top: 1.5rem;
+    transform: scale(.6);
+  }
+  .loader{
+    transform: scale(0.6);
+    top: 200px;
+    left: -5%;
+  }
+  .btn-delete{
+    top: 1%;
+    left: 90%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .General-container{
     width: 80%;
     transform: scale(0.9);
@@ -159,7 +193,7 @@ body{
   }
   .loader{
     transform: scale(0.6);
-    top: 200px;
+    top: 300px;
     left: -15%;
   }
   .btn-delete{
@@ -170,26 +204,20 @@ body{
 @media screen and (max-width: 912px) {
 .loader{
     transform: scale(0.6);
-    top: 350px;
+    top: 450px;
     left: -20%;
-  }
-}
-@media screen and (max-width: 820px) {
-.loader{
-    transform: scale(0.6);
-    top: 350px;
-    left: -25%;
   }
 }
 @media screen and (max-width: 540px) {
   .back-container{
     left: -.5rem;
+    top: 1.5rem;
     transform: scale(.5);
   }
   .General-container{
     width: 80%;
     transform: scale(.9);
-    margin-top: -90px;
+    margin-top: -120px;
   }
   .name-container h1{
     font-size: 1.5rem;
@@ -213,11 +241,13 @@ body{
     left: -37%;
   }
   .btn-delete{
-    top: 1%;
-    left: 85%;
+    width: 35px;
+    height: 35px;
+    left: 90%;
+    top: 2%;
   }
 }
-@media screen and (max-width: 414px) {
+@media screen and (min-width: 390px) and (max-width: 414px) {
   .General-container{
     width: 100%;
     transform: scale(.9);
@@ -243,45 +273,101 @@ body{
     margin-bottom: 5rem;
     transform: scale(0.7);
   }
+  .content span{
+    width: 200px;
+  }
   .loader{
     transform: scale(0.3);
     top: 350px;
     left: -40%;
   }
-}
-@media screen and (max-width: 412px) {
-  .loader{
-    transform: scale(0.3);
-    top: 350px;
-    left: -40%;
+  .btn-delete{
+    width: 30px;
+    height: 30px;
+    left: 90%;
   }
 }
 @media screen and (max-width: 375px) {
+  .General-container{
+    width: 100%;
+    transform: scale(.9);
+    margin-top: -120px;
+  }
+  .General-container img{
+    width: 100%;
+    max-height: 350px;
+  }
+  .back-container{
+    left: -1rem;
+    top: -.5rem;
+    transform: scale(.3);
+    opacity: 0.6; 
+    z-index: 9999;
+  }
+  .name-container{
+    transform: scale(0.8);
+  }
+  .more-details{
+    top: -5.5rem;
+    transform: scale(0.8);
+  }
+  .details-container{
+    width: 400px;
+    margin-left: -2rem;
+    margin-top: -5rem;
+    margin-bottom: 4rem;
+    transform: scale(0.7);
+  }
+  span{
+    width: 150px;
+  }
   .loader{
     transform: scale(0.3);
     top: 250px;
     left: -45%;
   }
+  .btn-delete{
+    width: 30px;
+    height: 30px;
+    left: 90%;
+  }
 }
 @media screen and (max-width: 280px) {
+  .General-container{
+    width: 100%;
+    transform: scale(.9);
+    margin-top: -120px;
+  }
+  .General-container img{
+    width: 100%;
+    max-height: 350px;
+  }
+  .back-container{
+    left: -1rem;
+    top: -.5rem;
+    transform: scale(.3);
+    opacity: 0.6; 
+    z-index: 9999;
+  }
   .name-container{
-    width: 60%;
+    transform: scale(0.8);
   }
   .name-container h1{
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .name-container h3{
-    font-size: 12px;
+    font-size: 0.8rem;
   }
-  .more-details {
+  .more-details{
+    top: -5.5rem;
     transform: scale(0.7);
-    width: 40%;
   }
   .details-container{
-    margin-left:2.5rem;
-    width: 80%;
-    transform: scale(0.6);
-    margin-bottom: 3rem;
+    width: 400px;
+    margin-left: 1rem;
+    margin-top: -5rem;
+    margin-bottom: 4rem;
+    transform: scale(0.7);
   }
   .loader{
     transform: scale(0.2);

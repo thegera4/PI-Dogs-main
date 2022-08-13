@@ -65,15 +65,15 @@ function Home() {
       <div className="Header">
         <div className="left-header">
           <h1>WELCOME TO BEFOS!</h1>
-          <p> Befos is a website that allows you to find your perfect dog based on the breed information.</p>
-          <p> To start you can click on the search icon and then write the name of a dog breed or use<br/> 
+          <p className="firstp"> Befos is a website that allows you to find your perfect dog based on the breed information.</p>
+          <p className="secondp"> To start you can click on the search icon and then write the name of a dog breed or use<br/> 
           the filters or pagination(page numbers) below to search in our database.</p>
           <div className="searchbar-container">
             <SearchBar />
           </div>
         </div>
         <div className="right-header">
-          <img src={Bella} alt="Bella" />
+          <img className = "bella-img" src={Bella} alt="Bella" />
         </div>
       </div>
       { loading? 

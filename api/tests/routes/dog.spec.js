@@ -52,11 +52,11 @@ describe('POST /dogs route', () => {
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
-    it('should get status 201 if dog was created correctly', () =>
-      agent.post('/dogs').send(dog).expect(201)
+    xit('should get status 201 if dog was created correctly', async () =>
+      await agent.post('/dogs').send(dog).expect(201)
     );
     it('should get status 400 if name is not valid', () =>
-      agent.post('/dogs').send({
+       agent.post('/dogs').send({
         height: '10 - 15',
         weight: '4 - 6',
         lifespan: '8 - 12',
@@ -77,3 +77,6 @@ describe('POST /dogs route', () => {
       }).expect(400)
     );
 });
+
+
+
