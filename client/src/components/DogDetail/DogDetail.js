@@ -76,9 +76,9 @@ export class DogDetail extends Component {
                   X </button>) : null}
             <img 
             src={!CREATED_IN_DB ? 
-            this.props.dogDetail[0]?.image.url : 
+            /*this.props.dogDetail[0]?.image?.url : 
             this.props.dogDetail[0]?.image ? 
-            this.props.dogDetail[0]?.image : DogProfile }
+            this.props.dogDetail[0]?.image :*/ DogProfile : null }
             alt={this.props.dogDetail[0]?.name} />
             <div className="name-container">
               <h1>{this.props.dogDetail[0]?.name}</h1>

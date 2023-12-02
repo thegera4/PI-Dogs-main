@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-//import Bark from '../../assets/sounds/bark_intro.mp3'
+import Bark from '../../assets/sounds/bark_intro.mp3'
 import Card from '../Card/Card'
 import Pagination from '../Paginate/Paginate'
 import NavBar from '../NavBar/NavBar'
@@ -14,7 +14,7 @@ import Bella from '../../assets/images/bella_home.png'
 import './Home.css'
 
 function Home() {
-  //const BARK = new Audio(Bark);
+  const BARK = new Audio(Bark);
   const DISPATCH = useDispatch()
   const DOGS = useSelector(state => state.dogs)
   const TEMPERAMENTS = useSelector(state => state.temperaments);
@@ -27,10 +27,11 @@ function Home() {
   const RENDERED_DOGS = DOGS.slice(FIRST_DOG, LAST_DOG);
 
   useEffect(() => {
-    //BARK.play();
-    //BARK.loop = false;
+    BARK.play();
+    BARK.loop = false;
     DISPATCH(getAllDogs())
     DISPATCH(getTemperaments())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DISPATCH])
   useEffect(() => {
     setTimeout(() => {
@@ -95,7 +96,7 @@ function Home() {
                 Refresh
             </button>
             <div className="AZZA-Filter">
-              <label>Filter by name: </label>
+              <label style={{paddingInlineEnd: '4px', paddingInlineStart: '4px'}}>Filter by name: </label>
               <select 
                 defaultValue={"Select"} 
                 onChange={e => {handleOrderByName(e)}}>
@@ -105,7 +106,7 @@ function Home() {
               </select>
             </div>
             <div className="Created-Filter">
-            <label>Filter by created: </label>
+            <label style={{paddingInlineEnd: '4px', paddingInlineStart: '4px'}}>Filter by created: </label>
               <select onChange={e => {handleFilterByCreated(e)}}>
                 <option value='All'>All dogs</option>
                 <option value='created'>Created in database</option>
@@ -113,7 +114,7 @@ function Home() {
               </select>
             </div>
             <div className="Temperaments-Filter">
-            <label>Filter by temperament: </label>
+            <label style={{paddingInlineEnd: '4px', paddingInlineStart: '4px'}}>Filter by temperament: </label>
               <select onChange={e => {handleFilterByTemperament(e)}}>
                 <option value="All">All temperaments</option>
                 {TEMPERAMENTS.map(temperament => {
@@ -128,7 +129,7 @@ function Home() {
               </select>
             </div>
             <div className="Weight-Filter">
-              <label>Filter by weight: </label>
+              <label style={{paddingInlineEnd: '4px', paddingInlineStart: '4px'}}>Filter by weight: </label>
               <select 
                 defaultValue={"Select"} 
                 onChange={e => {handleFilterByWeight(e)}}>
@@ -143,19 +144,19 @@ function Home() {
                 return(
                   <Link to={`/dog/${dog.id}`} key={dog.id}>
                     <Card
-                      name={dog.name} 
+                      name={dog?.name} 
                       image={
-                        dog.image === null ? DogPic :
-                        dog.image.url ? dog.image.url:
-                        dog.image ? dog.image : DogPic} 
+                        dog?.image === null ? DogPic :
+                        dog?.image?.url ? dog?.image?.url:
+                        dog?.image ? dog?.image : DogPic} 
                       temperament={
-                        dog.temperament?
-                        dog.temperament.split(', ')[0]:
-                        dog.temperaments?.length > 0 ? 
-                        dog.temperaments[0]?.name:'No record'} 
+                        dog?.temperament ?
+                        dog?.temperament.split(', ')[0]:
+                        dog?.temperaments?.length > 0 ? 
+                        dog?.temperaments[0]?.name:'No record'} 
                       weight={
-                        dog.weight?
-                        dog.weight:'No record'}/>
+                        dog?.weight ?
+                        dog?.weight:'No record'}/>
                   </Link>
                 )})}
           </div>
