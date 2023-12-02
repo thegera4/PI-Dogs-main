@@ -15,7 +15,7 @@ export const CLEAR_ERROR = "CLEAR_ERROR";
 export const ERROR_IN_POST = "ERROR_IN_POST";
 export const DELETE_DOG = "DELETE_DOG";
 
-const ADDRESS = process.env.REACT_APP_API || "https://pi-dogs-backend-production-c765.up.railway.app" || "http://localhost:3001";
+const ADDRESS = process.env.REACT_APP_API || "http://localhost:3001";
 
 export function getAllDogs(){
     console.log(ADDRESS)
